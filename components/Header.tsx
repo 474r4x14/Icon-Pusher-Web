@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, ReactNode, useState } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import AppCard from './AppCard';
 import style from './Header.module.scss';
+import { type } from "os";
 
-class Header extends React.Component {
+type propsType = {
+  onAdd:Function,
+  onRemove: Function,
+  onCheckSelected: Function,
+
+}
+function Header (props:propsType) {
 
     //let results = []
 
-    constructor(props) {
+
+/*
+    constructor(props:propsType) {
         super(props);
         this.state = {
             keyWord: "narp",
@@ -16,87 +25,59 @@ class Header extends React.Component {
         };
         //this.resultAppData = []
       }
+*/
 
-    doSearch = (e) =>
+const [keyword, setKeyword] = useState("narp");
+const [results, setResults] = useState<appType[]>([]);
+
+
+    const doSearch = (e:ChangeEvent<HTMLInputElement>) =>
     {
         let keyword = e.target.value
-        this.setState({keyWord: keyword});
+        // this.setState({keyWord: keyword});
+        setKeyword(keyword);
         if (keyword.length >= 3) {
             fetch(`https://api.iconpusher.com/search/${keyword}`)
             .then(res => res.json())
             .then(data => {
-              this.populateResults(data.apps)
+              // populateResults(data.apps)
+              setResults(data.apps)
             }).catch((e) => {console.log(e)});
         } else {
-            this.populateResults([])
+            // populateResults([])
+            setResults([])
         }
     }
 
-    populateResults = (appData: Array) => {
-        var results = <p>niet</p>
-        if (appData.length > 0) {
-            var more = null;
-            var moreLink = `/search/${this.state.keyWord}`
-            if (appData.length >= 10) {
-                more = <Link href={`/search/${this.state.keyWord}`}>
-                    More Results
-                </Link>
-            }
-            var resultList = []
-            var i = 0
-            var max = appData.length
-            if (max > 9) {
-                max = 9
-            }
-
-            /*
-            for (i = 0; i < max; i++) {
-                var app = appData[i]
-                resultList.push(<li>
-                // New component for grouping all cards
-                <AppCard name={app.name} appData={app} onAdd={this.addApp} onRemove={this.removeApp} />
-                </li>)
-            }
-            */
-            results = <div><AppCardGroup appCards={appData} moreLink={moreLink} onAdd={this.addApp} onRemove={this.removeApp} onCheckSelected={this.checkSelected} /></div>
-        }
-
-       this.setState({results: results})
+    const checkSelected = (appId:Number) => {
+        console.log('check selected data', appId, props)
+        props.onCheckSelected(appId)
     }
 
-
-
-
-
-
-
-    addApp = appData => {
-        console.log('HEADER add card data', appData.name)
-        console.log(this.props)
-        this.props.onAdd(appData)
+    var more = null;
+    var moreLink = `/search/${keyword}`
+    if (results.length >= 10) {
+        more = <Link href={`/search/${keyword}`}>
+            More Results
+        </Link>
     }
 
-    removeApp = (appId) => {
-        console.log('remove card data', appId, this.props)
-        this.props.onRemove(appId)
-    }
-
-    checkSelected = (appId) => {
-        console.log('check selected data', appId, this.props)
-        this.props.onCheckSelec(appId)
-    }
-
-    render() {
-        return <header>
-            <p>Icon Pusher</p>
+    return (
+        <header>
+            <p className="logo">Icon Pusher</p>
             <div className={style.search}>
-                <input type="search" onChange={this.doSearch} placeholder="Search" />
-                {this.state.results}
+                <input type="search" onChange={doSearch} placeholder="Search" />
+                <AppCardGroup
+                appCards={results}
+                moreLink={moreLink}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                // onCheckSelected={props.onCheckSelected}
+              />
             </div>
             <nav>
             </nav>
-        </header>;
-    }
+        </header>
+    )
   }
-
   export default Header

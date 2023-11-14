@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import Link from "next/link";
 import AppCard from './AppCard';
 import style from './SelectedApps.module.scss';
 import Misc from '../classes/Misc';
 
-class SelectedApps extends React.Component {
+
+type appCardsType = {
+  packageName:string,
+  id:number,
+  name:string,
+  icon:string,
+}
+
+
+type propData = {
+  appData:appCardsType[],
+}
+
+function SelectedApps (props:propData) {
+console.log('selectedApps',props)
+  const [selectedAppData, setSelectedAppData] = useState<appCardsType[]>([]);
+
+
 //var selected = [];
     //let results = []
-
+/*
     constructor(props) {
         super(props);
         this.selected = [];
@@ -17,11 +34,12 @@ class SelectedApps extends React.Component {
             results: [],
             selected: Misc.getVal('selected',[]),
         };
-        
-        
+
+
         //this.selected.push(<p>app deets</p>)
         //const [count, setCount] = useState(0);
       }
+      */
 
 /*
     doSearch = (e) =>
@@ -73,24 +91,31 @@ class SelectedApps extends React.Component {
     }
 */
 
-    render() {
-        let selectedApps = [];
-        /*
-        for(let i = 0; i < this.state.selected.length; i++) {
-            selectedApps.push(<p>{this.state.selected[i].name}</p>)
-        }
-        */
-        this.state.selected.forEach((app) => {
-            console.log('state app data',app)
-            selectedApps.push(<p>{app.name}</p>)
-        })
-        return <div className={style.selected}>
-            <h1>SELECTED, {this.props.name}</h1>
-            {selectedApps}
+
+
+// let selectedApps:appCardsType[] = [];
+let selectedApps:ReactElement[] = [];
+/*
+for(let i = 0; i < this.state.selected.length; i++) {
+    selectedApps.push(<p>{this.state.selected[i].name}</p>)
+}
+*/
+props.appData.forEach((app) => {
+    console.log('state app data',app)
+    // selectedApps.push(<p>{app.name}</p>)
+    selectedApps.push(<img src={app.icon} className="w-16" />)
+})
+    return(
+        <div className={style.selected}>
+            {/* <h1>SELECTED, {props.name}</h1> */}
+            <h1>Selected</h1>
+            <div className="flex-auto">
+              {selectedApps}
+              </div>
             <p>t2</p>
-            {this.props.appData}
-        </div>;
-    }
+            {/* {props.appData} */}
+        </div>
+    )
   }
 
   export default SelectedApps

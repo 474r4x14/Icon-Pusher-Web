@@ -3,17 +3,21 @@ import Link from "next/link";
 // import MyLayout from "../layouts/MyLayout";
 import AppCard from './AppCard';
 import styles from './AppCard.module.scss'
-
+/*
 type appCardsType = {
   packageName:string,
+  id:number,
   name:string,
   icon:string,
 }
-
+*/
 type propsType = {
-  appCards:appCardsType[],
+  appCards:appType[],
   moreLink?:string,
-  useMax:boolean,
+  useMax?:boolean,
+  onAdd:Function,
+  onRemove:Function,
+  onCheckSelected:Function,
 }
 
 function AppCardGroup(props:propsType) {
@@ -50,13 +54,14 @@ function AppCardGroup(props:propsType) {
             for (i = 0; i < max; i++) {
                 var app = props.appCards[i]
                 // checkSelected(app)
-                console.log('ADDING CARD DATA', i,app)
-                cards.push(<li>
+                // console.log('ADDING CARD DATA', i,app)
+                cards.push(<li key={`selected-${app.id}`}>
                 <AppCard
                   name={app.name}
                   appData={app}
-                  // onAdd={this.addApp}
-                  // onRemove={this.removeApp}
+                  onAdd={addApp}
+                  onRemove={removeApp}
+
                 />
                 </li>)
             }
@@ -65,22 +70,21 @@ function AppCardGroup(props:propsType) {
         return results;
 }
 
-/*
-        addApp = appData => {
+        const addApp = (appData:appType) => {
         console.log('appCardGroup','add card data', appData)
 //        this.props.onAdd()
-console.log('AppCardGroup props',this.props)
-        this.props.onAdd(appData)
+console.log('AppCardGroup props', props)
+        props.onAdd(appData)
     }
 
-    removeApp = appData => {
-        this.props.onRemove(appData)
+    const removeApp = (appData:appType) => {
+        props.onRemove(appData)
     }
 
-    checkSelected = appData => {
-        this.props.onCheckSelected(appData)
+    const checkSelected = (appData:appDataType) => {
+        // props.onCheckSelected(appData)
     }
-*/
+
 
     // var cards = this.getCards()
     return (
