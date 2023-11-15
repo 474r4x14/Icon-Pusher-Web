@@ -48,6 +48,7 @@ function AppCardGroup(props:propsType) {
               appData={app}
               onAdd={addApp}
               onRemove={removeApp}
+              selected={props.onCheckSelected(app)}
             />
           </li>
         )

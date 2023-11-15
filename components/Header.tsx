@@ -28,11 +28,6 @@ function Header (props:propsType) {
     }
   }
 
-  const checkSelected = (appId:Number) => {
-    console.log('check selected data', appId, props)
-    props.onCheckSelected(appId)
-  }
-
   var more = null;
   var moreLink = `/search/${keyword}`
   if (results.length >= 10) {
@@ -51,7 +46,7 @@ function Header (props:propsType) {
             moreLink={moreLink}
             onAdd={props.onAdd}
             onRemove={props.onRemove}
-            // onCheckSelected={props.onCheckSelected}
+            onCheckSelected={props.onCheckSelected}
           />
         </div>
       </header>

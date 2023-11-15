@@ -8,6 +8,7 @@ type propsType = {
   appData:appType,
   onAdd:Function,
   onRemove:Function,
+  selected:boolean,
 }
 
 function AppCard (props:propsType) {
@@ -34,6 +35,7 @@ function AppCard (props:propsType) {
         onChange={handleInputChange}
         value="test??"
         id={`app-${uid}`}
+        checked={props.selected}
       />
       <label htmlFor={`app-${uid}`}>test lbl</label>
     </div>
