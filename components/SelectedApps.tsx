@@ -24,7 +24,7 @@ function SelectedApps (props:propData) {
     return(
       <div className={style.selected}>
         <h1>Selected</h1>
-        <div className="flex-auto">
+        <div className="flex">
           {selectedApps}
         </div>
       </div>
