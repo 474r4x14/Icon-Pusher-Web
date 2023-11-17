@@ -15,7 +15,7 @@ type propsType = {
 function AppCardGroup(props:propsType) {
   const getCards = () => {
     var cards = [];
-    var results = <span>niet</span>
+    var results = <></>
 
     if (props.appCards.length > 0) {
       var more = null;
@@ -72,7 +72,7 @@ function AppCardGroup(props:propsType) {
 
 
   return (
-    <div>card group! {getCards()}</div>
+    <div>{getCards()}</div>
   )
 }
 export default AppCardGroup

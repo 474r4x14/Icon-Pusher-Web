@@ -16,6 +16,15 @@ function SelectedApps (props:propData) {
   console.log('selectedApps',props)
   const [selectedAppData, setSelectedAppData] = useState<appCardsType[]>([]);
 
+  const renderSelected = () => {
+    if (selectedApps.length > 5) {
+      const slice = selectedApps.slice(0,5)
+      const overflow = selectedApps.length - 5
+      return (<>{slice} +{overflow}</>)
+    }
+    return selectedApps
+  }
+
   let selectedApps:ReactElement[] = [];
   props.appData.forEach((app) => {
     console.log('state app data',app)
@@ -25,7 +34,7 @@ function SelectedApps (props:propData) {
       <div className={style.selected}>
         <h1>Selected</h1>
         <div className="flex">
-          {selectedApps}
+          {renderSelected()}
         </div>
       </div>
     )

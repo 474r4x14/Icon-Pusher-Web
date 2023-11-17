@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import React, { useState } from "react";
 import '../app/globals.css'
 import SelectedApps from '@/components/SelectedApps';
+import Header from '@/components/Header';
 
 // Component is the Page being loaded
 function MyApp({ Component, pageProps }: AppProps) {
@@ -63,17 +64,24 @@ function MyApp({ Component, pageProps }: AppProps) {
       );
     }
 
-  return <Layout>
-    <Component
-      {...pageProps}
-      onAdd={addSelected}
-      onRemove={removeSelected}
-      onCheckSelected={appIsSelected}
-    />
-    <SelectedApps
-      appData={selectedApps}
-    />
-	</Layout>
+  return (
+    <Layout>
+      <Header
+        onAdd={addSelected}
+        onRemove={removeSelected}
+        onCheckSelected={appIsSelected}
+      />
+      <Component
+        {...pageProps}
+        onAdd={addSelected}
+        onRemove={removeSelected}
+        onCheckSelected={appIsSelected}
+      />
+      <SelectedApps
+        appData={selectedApps}
+      />
+    </Layout>
+  )
 }
 
 export default MyApp
