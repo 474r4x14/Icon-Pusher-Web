@@ -4,17 +4,24 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  background-color: #fff;
+  transition: background-color .5s;
+  /* --background-start-rgb: 214, 219, 220; */
+  /* --background-end-rgb: 255, 255, 255; */
 }
 
+:root.dark {
+  background-color: #27272a;
+}
+
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    background-color: #121212;
   }
 }
+*/
 
 body {
   color: rgb(var(--foreground-rgb));
