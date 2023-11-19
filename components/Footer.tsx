@@ -18,7 +18,7 @@ class Footer extends React.Component {
 
     render() {
         return <footer className={style.main}>
-            <h1>FOOTER, {this.props.name}</h1>
+            {this.props.name}
         </footer>;
     }
   }
