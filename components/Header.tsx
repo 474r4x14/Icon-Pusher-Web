@@ -79,8 +79,8 @@ localStorage.removeItem('theme')
           <input
             type="search"
             onChange={doSearch}
-            placeholder="Search"
-            className="transition-colors p-4 rounded-lg bg-zinc-300 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400"
+            placeholder="Search for an app"
+            className="transition-colors p-4 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400"
           />
           <AppCardGroup
             appCards={results}
@@ -88,6 +88,7 @@ localStorage.removeItem('theme')
             onAdd={props.onAdd}
             onRemove={props.onRemove}
             onCheckSelected={props.onCheckSelected}
+            useMax={true}
           />
         </div>
       </header>

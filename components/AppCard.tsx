@@ -24,20 +24,25 @@ function AppCard (props:propsType) {
 
   let uid = Misc.getUID();
 
+  const color = props.selected ? "bg-green-400" : "bg-blue-400";
+
+
   return (
-    <div className={styles.appCard}>
+    // <div className={styles.appCard}>
+    <div className="relative">
       <Link href={`/package/${props.appData.packageName}`}>
         <img src={props.appData.icon} className="rounded" />
-        <p className="content-center">{props.appData.name}</p>
+        <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
       </Link>
       <input
         type="checkbox"
         onChange={handleInputChange}
-        value="test??"
+        // value="test??"
         id={`app-${uid}`}
         checked={props.selected}
+        className="hidden"
       />
-      <label htmlFor={`app-${uid}`}>test lbl</label>
+      <label htmlFor={`app-${uid}`} className={`block h-8 w-8 ${color} absolute z-10 inset-0`} />
     </div>
   )
 }

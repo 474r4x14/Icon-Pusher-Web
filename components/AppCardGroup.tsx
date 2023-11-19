@@ -25,16 +25,16 @@ function AppCardGroup(props:propsType) {
         </Link>
       }
       var i = 0
-      var useMax = true
+      // var useMax = true
       // if (useMax == 'false') {
-        useMax = false
+        // useMax = false
       // }
 
       var max = props.appCards.length
 
-      console.log('USE MAX',useMax, max, useMax)
+      // console.log('USE MAX',useMax, max, useMax)
 
-      if (useMax && max > 9) {
+      if (props.useMax && max > 9) {
         max = 9
       }
 
