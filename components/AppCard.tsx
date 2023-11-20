@@ -8,6 +8,7 @@ type propsType = {
   appData:appType,
   onAdd:Function,
   onRemove:Function,
+  setSearchKeyword:Function,
   selected:boolean,
 }
 
@@ -30,7 +31,10 @@ function AppCard (props:propsType) {
   return (
     // <div className={styles.appCard}>
     <div className="relative">
-      <Link href={`/package/${props.appData.packageName}`}>
+      <Link
+        href={`/package/${props.appData.packageName}`}
+        onClick={()=>{props.setSearchKeyword("")}}
+      >
         <img src={props.appData.icon} className="rounded" />
         <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
       </Link>

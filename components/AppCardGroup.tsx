@@ -10,6 +10,7 @@ type propsType = {
   onAdd:Function,
   onRemove:Function,
   onCheckSelected:Function,
+  setSearchKeyword:Function,
 }
 
 function AppCardGroup(props:propsType) {
@@ -49,6 +50,7 @@ function AppCardGroup(props:propsType) {
               onAdd={addApp}
               onRemove={removeApp}
               selected={props.onCheckSelected(app)}
+              setSearchKeyword={props.setSearchKeyword}
             />
           </li>
         )

@@ -23,6 +23,7 @@ type propsType = {
   onAdd:Function,
   onRemove:Function,
   onCheckSelected:Function,
+  setSearchKeyword:Function,
   latest:{apps:appType[]},
 }
 
@@ -45,7 +46,7 @@ export default function Home(props:propsType) {
 
               <p>Icon Pusher is a resource for Android Icon Pack developers to get application details for setting up their icon packs.</p>
               <p>You can get the companion app for submitting apps from the Google Play Store:
-                <a href="https://play.google.com/store/apps/details?id=dev.southpaw.iconpusher&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noreferrer" class="google-play-badge">
+                <a href="https://play.google.com/store/apps/details?id=dev.southpaw.iconpusher&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noreferrer" className="google-play-badge">
                   <img alt="Get it on Google Play" src="https://play.google.com/intl/en_gb/badges/static/images/badges/en_badge_web_generic.png" />
                 </a>
               </p>
@@ -61,6 +62,7 @@ export default function Home(props:propsType) {
                   onAdd={props.onAdd}
                   onRemove={props.onRemove}
                   onCheckSelected={props.onCheckSelected}
+                  setSearchKeyword={props.setSearchKeyword}
                 />
             </main>
 

@@ -44,7 +44,7 @@ const PackageDetails: NextPage = () => {
         .then(data => {
           setAppData(data);
         }).catch((e) => {console.log(e)});
-      }, []);
+      }, [router.asPath]);
 
 
 

@@ -15,6 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     // Keep a record of all selected apps
     const [selectedApps, setSelectedApps] = useState<appType[]>([]);
 
+    // Search keyword is kept here for access from other components
+    const [searchKeyword, setSearchKeyword] = useState("");
+
     // Is the app already selected?
     const appIsSelected = (app:appType):boolean => {
       let isSelected = false
@@ -51,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     }
 
-    // Remove all from selected list
+    // Remove app from selected list
     function removeSelected(app:appType)
     {
       var index = appSelectedIndex(app)
@@ -70,12 +73,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         onAdd={addSelected}
         onRemove={removeSelected}
         onCheckSelected={appIsSelected}
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
       />
       <Component
         {...pageProps}
         onAdd={addSelected}
         onRemove={removeSelected}
         onCheckSelected={appIsSelected}
+        setSearchKeyword={setSearchKeyword}
       />
       <SelectedApps
         appData={selectedApps}

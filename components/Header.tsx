@@ -7,11 +7,12 @@ type propsType = {
   onAdd:Function,
   onRemove: Function,
   onCheckSelected: Function,
-
+  searchKeyword:string,
+  setSearchKeyword:Function,
 }
 function Header (props:propsType) {
 
-  const [keyword, setKeyword] = useState("narp");
+  // const [keyword, setKeyword] = useState("narp");
   const [results, setResults] = useState<appType[]>([]);
 
   useEffect(() => {
@@ -23,9 +24,17 @@ function Header (props:propsType) {
     }
   }, []);
 
+  useEffect(() => {
+    console.log('kw - Has changed')
+    if (props.searchKeyword.length == 0) {
+      setResults([])
+    }
+  },[props.searchKeyword]) // <-- here put the parameter to listen, react will re-render component when your state will be changed
+
+
   const doSearch = (e:ChangeEvent<HTMLInputElement>) => {
     let keyword = e.target.value
-    setKeyword(keyword);
+    props.setSearchKeyword(keyword)
     if (keyword.length >= 3) {
       fetch(`https://api.iconpusher.com/search/${keyword}`)
       .then(res => res.json())
@@ -38,9 +47,9 @@ function Header (props:propsType) {
   }
 
   var more = null;
-  var moreLink = `/search/${keyword}`
+  var moreLink = `/search/${props.searchKeyword}`
   if (results.length >= 10) {
-      more = <Link href={`/search/${keyword}`}>
+      more = <Link href={`/search/${props.searchKeyword}`}>
           More Results
       </Link>
   }
@@ -81,6 +90,7 @@ localStorage.removeItem('theme')
             onChange={doSearch}
             placeholder="Search for an app"
             className="transition-colors p-4 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400"
+            value={props.searchKeyword}
           />
           <AppCardGroup
             appCards={results}
@@ -88,6 +98,7 @@ localStorage.removeItem('theme')
             onAdd={props.onAdd}
             onRemove={props.onRemove}
             onCheckSelected={props.onCheckSelected}
+            setSearchKeyword={props.setSearchKeyword}
             useMax={true}
           />
         </div>
