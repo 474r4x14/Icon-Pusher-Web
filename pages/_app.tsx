@@ -85,6 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <SelectedApps
         appData={selectedApps}
+        setSearchKeyword={setSearchKeyword}
       />
     </Layout>
   )

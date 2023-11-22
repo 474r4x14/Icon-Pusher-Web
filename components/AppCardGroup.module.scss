@@ -1,0 +1,32 @@
+
+.appCardGroup {
+  // background-color: #08f;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+
+  li {
+    // background-color: #f00;
+    // margin: 1em;
+    // width: 50%;
+    width: 200px;
+    box-shadow: 0px 4px 8px #000;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .appCardGroup li {
+    // width: 33.333%;
+  }
+}
+
+@media only screen and (min-width: 1024px){
+  .appCardGroup li{
+    // width:25%;
+  }
+}

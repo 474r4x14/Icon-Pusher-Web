@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import AppCard from './AppCard';
-import styles from './AppCard.module.scss'
+import styles from './AppCardGroup.module.scss'
 
 type propsType = {
   appCards:appType[],
@@ -21,8 +21,11 @@ function AppCardGroup(props:propsType) {
     if (props.appCards.length > 0) {
       var more = null;
       if (props.appCards.length >= 10 && props.moreLink) {
-        more = <Link href={props.moreLink}>
-          MOAR
+        more = <Link
+          href={props.moreLink}
+          onClick={()=>{props.setSearchKeyword("")}}
+        >
+          More results
         </Link>
       }
       var i = 0
@@ -74,7 +77,7 @@ function AppCardGroup(props:propsType) {
 
 
   return (
-    <div>{getCards()}</div>
+    <div className={styles.appCardGroup}>{getCards()}</div>
   )
 }
 export default AppCardGroup

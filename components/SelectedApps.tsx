@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from "react";
+import Link from "next/link";
 import style from './SelectedApps.module.scss';
 
 type appCardsType = {
@@ -10,6 +11,7 @@ type appCardsType = {
 
 type propData = {
   appData:appCardsType[],
+  setSearchKeyword:Function,
 }
 
 function SelectedApps (props:propData) {
@@ -28,7 +30,14 @@ function SelectedApps (props:propData) {
   let selectedApps:ReactElement[] = [];
   props.appData.forEach((app) => {
     console.log('state app data',app)
-    selectedApps.push(<img src={app.icon} className="w-16" />)
+    selectedApps.push(
+      <Link
+      href={`/package/${app.packageName}`}
+      onClick={()=>{props.setSearchKeyword("")}}
+    >
+      <img src={app.icon} className="w-16" />
+      </Link>
+    )
   })
     return(
       <div className={style.selected}>
