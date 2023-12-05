@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Header from "../../components/Header"
 import Misc from '@/classes/Misc';
+import useDownloader from "react-use-downloader";
 
 import stream from 'stream';
 import { promisify } from 'util';
@@ -41,6 +42,9 @@ const PackageDetails: NextPage = () => {
       components: [],
     });
 
+    const { size, elapsed, percentage, download,
+      cancel, error, isInProgress } =
+    useDownloader();
 
     useEffect(() => {
         fetch(`https://api.iconpusher.com/package/${packageName}`)
@@ -49,8 +53,6 @@ const PackageDetails: NextPage = () => {
           setAppData(data);
         }).catch((e) => {console.log(e)});
       }, [router.asPath]);
-
-
 
       var appFilterValue = `<!-- ${appData.name} -->\n`;
       var appMapValue = `<!-- ${appData.name} -->\n`;
@@ -66,6 +68,34 @@ const PackageDetails: NextPage = () => {
         }
       }
 
+      const copy = (elementId:string) =>
+      {
+        const element = document.getElementById(elementId)
+        if (element != undefined) {
+          let copyValue = "";
+          let value = "";
+
+            if (!global.navigator.clipboard) {
+              // throw new Error("Browser don't have support for native clipboard.");
+            }
+
+            if (elementId) {
+              const node = document.getElementById(elementId);
+
+              if (!node || !node.textContent) {
+                throw new Error("Element not found");
+              }
+
+              value = node.textContent;
+            }
+
+            if (value) {
+              copyValue = value;
+            }
+
+            global.navigator.clipboard.writeText(copyValue);
+        }
+      }
 
 
 
@@ -85,10 +115,9 @@ const PackageDetails: NextPage = () => {
             <img src={appData.icon} className='inline-block' />
         </p>
 
-
         <p className="text-center">
-            <a
-              href={appData.iconDownload}
+            <a className='cursor-pointer'
+              onClick={() => download(appData.icon, `${appData.packageName}-${appData.version}.png`)}
             >Download latest app version icon ({appData.version})</a>
         </p>
 
@@ -104,10 +133,7 @@ const PackageDetails: NextPage = () => {
         <p><strong>theme_resources.xml</strong></p>
         <p><textarea className="w-full h-40 p-2" id="theme-resources" readOnly value={themeResourcesValue}></textarea></p>
         <p><button id="copy-theme-resources">Copy</button></p>
-
-
       </main>
-
     </div>
   )
 }
