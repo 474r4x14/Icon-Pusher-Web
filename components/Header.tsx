@@ -82,6 +82,11 @@ localStorage.removeItem('theme')
       <header>
         <div className="bg-emerald-700 border-b-4 border-emerald-800">
           <p className="logo" onClick={toggleTheme}>Icon Pusher</p>
+          <p>
+            <Link href="/">
+              home
+            </Link>
+          </p>
         </div>
         {/* <div className={style.search}> */}
         <div className="text-center my-4">

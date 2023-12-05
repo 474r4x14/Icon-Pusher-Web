@@ -1,38 +1,50 @@
 class Misc {
-    static uid = 0
-    static getUID()
-    {
-        this.uid++
-        return this.uid
+  static uid = 0
+  static getUID()
+  {
+      this.uid++
+      return this.uid
+  }
+
+
+
+  static getVal(key:string, defaultVal:any)
+  {
+  if (typeof window === "undefined") {
+    return defaultVal;
+  }
+  try {
+    // Get from local storage by key
+    const item = window.localStorage.getItem(key);
+    // Parse stored json or if none return initialValue
+    return item ? JSON.parse(item) : defaultVal;
+  } catch (error) {
+    // If error also return initialValue
+    console.log(error);
+  }
+    return defaultVal;
+
+  }
+
+  static setVal(key:string, val:any){
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, JSON.stringify(val));
     }
-    
-    
-    
-    static getVal(key, defaultVal)
-    {
-    if (typeof window === "undefined") {
-      return defaultVal;
-    }
-    try {
-      // Get from local storage by key
-      const item = window.localStorage.getItem(key);
-      // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      // If error also return initialValue
-      console.log(error);
-    }
-      return defaultVal;
-    
-    }
-    
-    static setVal(key, val){
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(key, JSON.stringify(val));
-      }
-    //} catch (error) {
-    //}
-}
+  //} catch (error) {
+  //}
+  }
+
+  static slug(str:string, delimiter:string)
+  {
+    let newStr = str.replace(/[\[\]{}()]/, "");
+    newStr = newStr.trim()
+    newStr = newStr.toLowerCase()
+    newStr = newStr.replaceAll(/[\/_|+ -]+/g, delimiter);
+    return newStr
+  }
+
+
+
     /*
 // Hook
 static useLocalStorage(key, initialValue) {
@@ -72,7 +84,7 @@ static useLocalStorage(key, initialValue) {
     }
   };
   return [storedValue, setValue];
-}    
+}
     */
 }
-export default Misc 
+export default Misc
