@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import Script from 'next/script';
 //import React from "react"
 import React, { useState } from "react";
 import '../app/globals.css'
@@ -9,8 +10,10 @@ import Header from '@/components/Header';
 // Component is the Page being loaded
 function MyApp({ Component, pageProps }: AppProps) {
 
+  // console.log('PAGE PROPS',Component, pageProps);
+
     // We try to grab the Layout static var from the Page
-    const Layout = Component.Layout ? Component.Layout : React.Fragment;
+    // const Layout = Component.Layout != undefined ? Component.Layout : React.Fragment;
 
     // Keep a record of all selected apps
     const [selectedApps, setSelectedApps] = useState<appType[]>([]);
@@ -67,8 +70,23 @@ function MyApp({ Component, pageProps }: AppProps) {
       );
     }
 
+  const footerPadding = selectedApps.length > 0 ? 'pb-24' : ''
+
   return (
-    <Layout>
+    <>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-8SJJRGD904"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-8SJJRGD904');
+        `}
+      </Script>
       <Header
         onAdd={addSelected}
         onRemove={removeSelected}
@@ -87,7 +105,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         appData={selectedApps}
         setSearchKeyword={setSearchKeyword}
       />
-    </Layout>
+      <footer className={`bg-zinc-900 border-t-4 border-zinc-950 ${footerPadding}`}>
+        <div className='max-w-screen-xl m-auto '>
+           <p className='py-2 text-right'>v2.0-pre-1</p>
+        </div>
+      </footer>
+    </>
   )
 }
 

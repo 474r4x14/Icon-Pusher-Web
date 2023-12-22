@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@iconscout/react-unicons": "^2.0.2",
+    "@tabler/icons-react": "^2.44.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "next": "14.0.1",

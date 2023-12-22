@@ -4,4 +4,5 @@ type appType = {
   name:string,
   icon:string,
   selected:boolean,
+  components:string[],
 }

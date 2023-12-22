@@ -31,7 +31,7 @@ function SearchResult(props:propsType) {
         .then(data => {
           setAppData(data.apps);
         }).catch((e) => {console.log(e)});
-      }, [router.asPath]);
+      }, [router.isReady, keyword]);
 
   return (
     <div className={styles.container}>

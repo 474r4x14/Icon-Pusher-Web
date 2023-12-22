@@ -2,6 +2,7 @@ import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
+import { IconSun } from '@tabler/icons-react';
 
 type propsType = {
   onAdd:Function,
@@ -25,7 +26,7 @@ function Header (props:propsType) {
   }, []);
 
   useEffect(() => {
-    console.log('kw - Has changed')
+    // console.log('kw - Has changed')
     if (props.searchKeyword.length == 0) {
       setResults([])
     }
@@ -48,7 +49,7 @@ function Header (props:propsType) {
 
   var more = null;
   var moreLink = `/search/${props.searchKeyword}`
-  if (results.length >= 10) {
+  if (results.length > 12) {
       more = <Link href={`/search/${props.searchKeyword}`}>
           More Results
       </Link>
@@ -74,27 +75,31 @@ localStorage.removeItem('theme')
       localStorage.theme = 'light'
       document.documentElement.classList.remove('dark');
     }
-    console.log('setting theme', localStorage.theme);
+    // console.log('setting theme', localStorage.theme);
   }
 
 
     return (
       <header>
         <div className="bg-emerald-700 border-b-4 border-emerald-800">
-          <p className="logo" onClick={toggleTheme}>Icon Pusher</p>
-          <p>
-            <Link href="/">
-              home
-            </Link>
-          </p>
+          <div className="max-w-screen-xl m-auto flex items-center">
+            <p className="grow">
+              <Link href="/" className="py-3 inline-block">
+                Icon Pusher
+              </Link>
+            </p>
+            <p className="logo" onClick={toggleTheme}>
+              <IconSun />
+            </p>
+          </div>
         </div>
         {/* <div className={style.search}> */}
-        <div className="text-center my-4">
+        <div className="text-center my-4 max-w-screen-xl m-auto">
           <input
             type="search"
             onChange={doSearch}
             placeholder="Search for an app"
-            className="transition-colors p-4 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400"
+            className="transition-colors p-4 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400 w-full"
             value={props.searchKeyword}
           />
           <AppCardGroup

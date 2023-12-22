@@ -1,7 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
+import Image from 'next/image'
+
 import styles from './AppCard.module.scss'
 import Misc from '../classes/Misc';
+import { IconCheck } from '@tabler/icons-react';
 
 type propsType = {
   name:string,
@@ -14,9 +17,11 @@ type propsType = {
 
 function AppCard (props:propsType) {
 
+  const appData = props.appData
+
   const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      console.log('AppCard', 'calling props.onAdd')
+      // console.log('AppCard', 'calling props.onAdd')
       props.onAdd(props.appData)
     } else {
       props.onRemove(props.appData)
@@ -26,8 +31,17 @@ function AppCard (props:propsType) {
   let uid = Misc.getUID();
 
   const color = props.selected ? "bg-green-400" : "bg-blue-400";
-
-
+  const tick = props.selected ? "text-black after:flex after:top-0 after:absolute after:w-full after:h-full after:justify-center after:align-center after:content-['\\2713']" : "";
+  const check = props.selected ? <IconCheck className="absolute top-0" /> : <></>
+  /*
+  display: flex;
+  top: 0;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+*/
   return (
     // <div className={styles.appCard}>
     <div className="relative">
@@ -35,7 +49,7 @@ function AppCard (props:propsType) {
         href={`/package/${props.appData.packageName}`}
         onClick={()=>{props.setSearchKeyword("")}}
       >
-        <img src={props.appData.icon} className="rounded" />
+        <Image src={props.appData.icon} className="rounded" width={200} height={200} alt={`${props.appData.name}`} />
         <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
       </Link>
       <input
@@ -46,7 +60,10 @@ function AppCard (props:propsType) {
         checked={props.selected}
         className="hidden"
       />
-      <label htmlFor={`app-${uid}`} className={`block h-8 w-8 ${color} absolute z-10 inset-0`} />
+      <label htmlFor={`app-${uid}`} className={`block h-8 w-8 border-solid border-2 border-emerald-700 absolute z-10 inset-0 rounded-md ${tick}`} >
+        <span className={`block ${color}  opacity-50 w-full h-full`}></span>
+        {check}
+      </label>
     </div>
   )
 }

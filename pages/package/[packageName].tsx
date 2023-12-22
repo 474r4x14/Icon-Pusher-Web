@@ -47,12 +47,15 @@ const PackageDetails: NextPage = () => {
     useDownloader();
 
     useEffect(() => {
+      // if(!router.isReady) return;
+
         fetch(`https://api.iconpusher.com/package/${packageName}`)
         .then(res => res.json())
         .then(data => {
           setAppData(data);
         }).catch((e) => {console.log(e)});
-      }, [router.asPath]);
+      // }, [router.asPath]);
+      }, [router.isReady, packageName]);
 
       var appFilterValue = `<!-- ${appData.name} -->\n`;
       var appMapValue = `<!-- ${appData.name} -->\n`;
@@ -112,7 +115,7 @@ const PackageDetails: NextPage = () => {
         <p><a href={`https://play.google.com/store/apps/details?id=${appData.packageName}`} target="_blank">Google Play Page</a></p>
 
         <p className="text-center main-icon">
-            <img src={appData.icon} className='inline-block' />
+            <Image src={appData.icon} className='inline-block' alt={appData.name} width={192} height={192} />
         </p>
 
         <p className="text-center">

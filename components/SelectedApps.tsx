@@ -1,10 +1,11 @@
 import React, { ReactElement, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import style from './SelectedApps.module.scss';
 import Misc from '@/classes/Misc';
 import { saveAs } from 'file-saver';
 var JSZip = require("jszip");
-
+/*
 type appCardsType = {
   packageName:string,
   components:string[],
@@ -12,15 +13,16 @@ type appCardsType = {
   name:string,
   icon:string,
 }
+*/
 
 type propData = {
-  appData:appCardsType[],
+  appData:appType[],
   setSearchKeyword:Function,
 }
 
 function SelectedApps (props:propData) {
-  console.log('selectedApps',props)
-  const [selectedAppData, setSelectedAppData] = useState<appCardsType[]>([]);
+  // console.log('selectedApps',props)
+  const [selectedAppData, setSelectedAppData] = useState<appType[]>([]);
 
   const renderSelected = () => {
     if (selectedApps.length > 5) {
@@ -51,7 +53,7 @@ function SelectedApps (props:propData) {
             return Promise.reject(new Error(r.statusText))
         })
         const name = url.substring(url.lastIndexOf('/')+1)
-        console.log('added file',url,name)
+        // console.log('added file',url,name)
         folder.file(name, blobPromise)
     })
     zip.generateAsync({type:"blob"})
@@ -60,7 +62,7 @@ function SelectedApps (props:propData) {
         .catch((e:Error) => console.log(e));
 }
 
-  const saveToZipFull = (filename:string, apps:appCardsType[]) => {
+  const saveToZipFull = (filename:string, apps:appType[]) => {
     const zip = new JSZip()
     const folder = zip.folder('icons')
 
@@ -103,28 +105,33 @@ function SelectedApps (props:propData) {
         .catch((e:Error) => console.log(e));
   }
 
-
   let selectedApps:ReactElement[] = [];
   props.appData.forEach((app) => {
-    console.log('state app data',app)
+    // console.log('state app data',app)
     selectedApps.push(
       <Link
-      href={`/package/${app.packageName}`}
-      onClick={()=>{props.setSearchKeyword("")}}
-    >
-      <img src={app.icon} className="w-16" />
+        href={`/package/${app.packageName}`}
+        onClick={()=>{props.setSearchKeyword("")}}
+      >
+        <Image src={app.icon} className="w-16" width={192} height={192} alt={app.name} />
       </Link>
     )
   })
+
+  if (props.appData.length > 0) {
     return(
-      <div className={style.selected}>
-        <h1>Selected</h1>
-        <div className="flex">
+      <div
+        // className={style.selected}
+        className="bg-emerald-700 border-t-4 border-emerald-800 fixed bottom-0 w-full z-20 p-4"
+      >
+        <div className="flex items-center">
           {renderSelected()}
-          <a onClick={download}>Download</a>
+          <a onClick={download} className="cursor-pointer p-4">Download zip</a>
         </div>
       </div>
     )
+  }
+  return <></>
   }
 
   export default SelectedApps

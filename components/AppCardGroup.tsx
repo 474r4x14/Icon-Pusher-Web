@@ -20,7 +20,7 @@ function AppCardGroup(props:propsType) {
 
     if (props.appCards.length > 0) {
       var more = null;
-      if (props.appCards.length >= 10 && props.moreLink) {
+      if (props.appCards.length > 12 && props.moreLink) {
         more = <Link
           href={props.moreLink}
           onClick={()=>{props.setSearchKeyword("")}}
@@ -38,11 +38,11 @@ function AppCardGroup(props:propsType) {
 
       // console.log('USE MAX',useMax, max, useMax)
 
-      if (props.useMax && max > 9) {
-        max = 9
+      if (props.useMax && max > 12) {
+        max = 12
       }
 
-      console.log('AppCardGroup max',max)
+      // console.log('AppCardGroup max',max)
       for (i = 0; i < max; i++) {
         var app = props.appCards[i]
         cards.push(
@@ -77,7 +77,7 @@ function AppCardGroup(props:propsType) {
 
 
   return (
-    <div className={styles.appCardGroup}>{getCards()}</div>
+    <div>{getCards()}</div>
   )
 }
 export default AppCardGroup
