@@ -2,7 +2,7 @@ import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
-import { IconSun } from '@tabler/icons-react';
+import { IconSun, IconBug } from '@tabler/icons-react';
 
 type propsType = {
   onAdd:Function,
@@ -81,14 +81,21 @@ localStorage.removeItem('theme')
 
     return (
       <header>
-        <div className="bg-emerald-700 border-b-4 border-emerald-800">
+        <div className="bg-emerald-700 border-b-4 border-emerald-800 text-white">
           <div className="max-w-screen-xl m-auto flex items-center">
             <p className="grow">
               <Link href="/" className="py-3 inline-block">
                 Icon Pusher
               </Link>
             </p>
-            <p className="logo" onClick={toggleTheme}>
+            <ul>
+              <li>
+                <Link href="/beta">
+                  <IconBug />
+                </Link>
+              </li>
+            </ul>
+            <p className="p-4 cursor-pointer" onClick={toggleTheme}>
               <IconSun />
             </p>
           </div>

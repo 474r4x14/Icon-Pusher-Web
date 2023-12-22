@@ -105,7 +105,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         appData={selectedApps}
         setSearchKeyword={setSearchKeyword}
       />
-      <footer className={`bg-zinc-900 border-t-4 border-zinc-950 ${footerPadding}`}>
+      <footer className={`bg-zinc-900 border-t-4 border-zinc-950 text-white ${footerPadding}`}>
         <div className='max-w-screen-xl m-auto '>
            <p className='py-2 text-right'>v2.0-pre-1</p>
         </div>

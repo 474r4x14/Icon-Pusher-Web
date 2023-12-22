@@ -122,7 +122,7 @@ function SelectedApps (props:propData) {
     return(
       <div
         // className={style.selected}
-        className="bg-emerald-700 border-t-4 border-emerald-800 fixed bottom-0 w-full z-20 p-4"
+        className="bg-emerald-700 border-t-4 border-emerald-800 fixed bottom-0 w-full z-20 p-4 text-white"
       >
         <div className="flex items-center">
           {renderSelected()}
