@@ -1,18 +1,21 @@
 
 .appCardGroup {
+  ul {
   // background-color: #08f;
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  // gap: 1em;
   justify-content: center;
   padding: 2em 0;
+  }
 
   li {
     // background-color: #f00;
     // margin: 1em;
     // width: 50%;
-    width: 200px;
+    width: 50%;
     box-shadow: 0px 4px 8px #000;
+    padding-bottom: 1em;
 
     img {
       width: 100%;
@@ -20,9 +23,15 @@
   }
 }
 
-@media screen and (min-width: 600px) {
-  .appCardGroup li {
-    // width: 33.333%;
+@media screen and (min-width: 630px) {
+  .appCardGroup ul{
+    gap: 1em;
+
+    li {
+      // width: 33.333%;
+      width: 200px;
+      padding-bottom: 0;
+    }
   }
 }
 

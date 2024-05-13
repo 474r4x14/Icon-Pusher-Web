@@ -12,6 +12,7 @@ import useDownloader from "react-use-downloader";
 
 import stream from 'stream';
 import { promisify } from 'util';
+import { Button, Tooltip } from '@mui/material';
 
 type componentType = {
 
@@ -41,6 +42,12 @@ const PackageDetails: NextPage = () => {
       packageName: '',
       components: [],
     });
+
+
+    const [copyToolTipFilter, setCopyToolTipFilter] = useState(false);
+    const [copyToolTipApp, setCopyToolTipApp] = useState(false);
+    const [copyToolTipTheme, setCopyToolTipTheme] = useState(false);
+
 
     const { size, elapsed, percentage, download,
       cancel, error, isInProgress } =
@@ -101,6 +108,31 @@ const PackageDetails: NextPage = () => {
       }
 
 
+      const handleTooltipClose = (type:number) => {
+        if (type == 1) {
+          setCopyToolTipApp(false)
+        } else if (type == 2) {
+          setCopyToolTipFilter(false)
+        } else if (type == 3) {
+          setCopyToolTipTheme(false)
+        }
+      };
+
+      const handleTooltipOpen = (type:number) => {
+        if (type == 1) {
+          setCopyToolTipApp(true)
+        } else if (type == 2) {
+          setCopyToolTipFilter(true)
+        } else if (type == 3) {
+          setCopyToolTipTheme(true)
+        }
+        setTimeout(()=>{
+          handleTooltipClose(type)
+        },2000)
+      };
+
+
+
 
   return (
     <div className={styles.container}>
@@ -125,16 +157,75 @@ const PackageDetails: NextPage = () => {
 
         <p><strong>appfilter.xml</strong></p>
         <p><textarea className="w-full h-40 p-2" id="appfilter" readOnly={true} value={appFilterValue}></textarea></p>
-        <p><button id="copy-appfilter" onClick={()=>copy("appfilter")}>Copy</button></p>
+        <p>
+          <Tooltip placement='right'
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+            title="Copied"
+            // onClose={handleTooltipClose}
+            open={copyToolTipFilter}
+          >
+          <button id="copy-appfilter"
+            onClick={
+              ()=>{
+                handleTooltipOpen(2)
+                copy("appfilter")
+              }
+            }
+            className='transition-colors px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400 my-4'
+          >Copy</button>
+          </Tooltip>
+        </p>
 
 
         <p><strong>appmap.xml</strong></p>
         <p><textarea className="w-full h-40 p-2" id="appmap" readOnly value={appMapValue}></textarea></p>
-        <p><button id="copy-appmap">Copy</button></p>
+        <p>
+        <Tooltip placement='right'
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+            title="Copied"
+            // onClose={handleTooltipClose}
+            open={copyToolTipApp}
+          >
+          <button
+            id="copy-appmap"
+            onClick={
+              ()=>{
+                handleTooltipOpen(1)
+                copy("appmap")
+              }
+            }
+            className='transition-colors px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400 my-4'
+          >Copy</button>
+          </Tooltip>
+        </p>
 
         <p><strong>theme_resources.xml</strong></p>
         <p><textarea className="w-full h-40 p-2" id="theme-resources" readOnly value={themeResourcesValue}></textarea></p>
-        <p><button id="copy-theme-resources">Copy</button></p>
+        <p>
+          <Tooltip placement='right'
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+            title="Copied"
+            // onClose={handleTooltipClose}
+            open={copyToolTipTheme}
+          >
+            <button
+              id="copy-theme-resources"
+              onClick={
+                ()=>{
+                  handleTooltipOpen(3)
+                  copy("theme-resources")
+                }
+              }
+              className='transition-colors px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400 my-4'
+            >Copy</button>
+          </Tooltip>
+        </p>
       </main>
     </div>
   )

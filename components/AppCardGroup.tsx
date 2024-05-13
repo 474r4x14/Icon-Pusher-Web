@@ -21,7 +21,7 @@ function AppCardGroup(props:propsType) {
     if (props.appCards.length > 0) {
       var more = null;
       if (props.appCards.length > 12 && props.moreLink) {
-        more = <Link
+        more = <Link className="transition-colors p-4 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400 w-full"
           href={props.moreLink}
           onClick={()=>{props.setSearchKeyword("")}}
         >
@@ -58,7 +58,7 @@ function AppCardGroup(props:propsType) {
           </li>
         )
       }
-      results = <div><ul className={styles.appCardGroup}>{cards}</ul>{more}</div>
+      results = <div className={styles.appCardGroup}><ul>{cards}</ul>{more}</div>
     }
     return results;
   }

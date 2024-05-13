@@ -45,27 +45,26 @@ const PackageDetails: NextPage = () => {
       <main className={styles.main}>
         <h1>Iconpusher v2 BETA</h1>
         <p>Hello icon pack artists/creators</p>
-        <p>It's been a loooong time since iconpusher.com saw any sort of love, so it's well overdue.</p>
+        <p>It&apos;s been a loooong time since iconpusher.com saw any sort of love, so it&apos;s well overdue.</p>
         <p>The ideas behind this new version have been on the board for quite some time with the plan to help improve the site.
           The key one being to allow selecting multiple apps and downloading all their details in one go.</p>
         <p>Please remember this is still a beta version, some things might be janky / broken.
-          I'm releasing this to the public to help show the direction we're headed and what's to come.</p>
+          I&apos;m releasing this to the public to help show the direction we&apos;re headed and what&apos;s to come.</p>
 
         <p>All feedback is welcome: <a href="mailto:beta@iconpusher.com?subject=Beta feedback">beta@iconpusher.com</a></p>
-        <h2>Issues I'm aware of:</h2>
+        <h2>Issues I&apos;m aware of:</h2>
         <ul>
-          <li>Some app icons are broken</li>
-          <li>Latest icons might not show (delayed data processing)</li>
-          <li>No feedback using copy buttons</li>
+          <li>Missing icons (also on live)</li>
           <li>Device lists</li>
           <li>Option to clear selection</li>
           <li>Page to view selected apps</li>
           <li>Select/deselect from details page</li>
           <li>Responsive design is incomplete</li>
           <li>General styling</li>
+          <li>Some name characters are badly encoded</li>
         </ul>
 
-        <h2>New features:</h2>
+        <h2>Upcoming features:</h2>
         <ul>
           <li>App icon versions</li>
           <li>Pagination</li>
@@ -73,7 +72,24 @@ const PackageDetails: NextPage = () => {
         </ul>
 
         <h2>Change log:</h2>
-        <ul>
+        <ul className={styles.changelog}>
+          <li>
+            <strong>v2.0 pre-4 (2024-05-07)</strong><br />
+            Added feedback to copy buttons<br/>
+            Fixed copy buttons not working<br />
+            Styled &lsquo;More Results&rsquo; button<br />
+            Sync with live version is now automated<br />
+            Fixed some broken icons
+          </li>
+          <li>
+            <strong>v2.0 pre-3 (2024-01-19)</strong><br />
+            Fixed - Some responsive styling
+          </li>
+          <li>
+            <strong>v2.0 pre-2 (2024-01-01)</strong><br />
+            Fixed - Some app icons are broken<br />
+            Update - Attempted to fix latest icons not appearing
+          </li>
           <li>
             <strong>v2.0-pre-1 (2023-12-22)</strong><br />
             The initial version featuring mutliple app selection &amp; download as zip

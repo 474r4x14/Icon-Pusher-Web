@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import '../app/globals.css'
 import SelectedApps from '@/components/SelectedApps';
 import Header from '@/components/Header';
+import Link from 'next/link';
 
 // Component is the Page being loaded
 function MyApp({ Component, pageProps }: AppProps) {
@@ -76,9 +77,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-8SJJRGD904"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="beforeInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
@@ -107,7 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <footer className={`bg-zinc-900 border-t-4 border-zinc-950 text-white ${footerPadding}`}>
         <div className='max-w-screen-xl m-auto '>
-           <p className='py-2 text-right'>v2.0-pre-1</p>
+           <p className='py-2 text-right'><Link href="/beta" className="py-3 inline-block">v2.0-pre-4</Link></p>
         </div>
       </footer>
     </>

@@ -65,13 +65,14 @@ export default function Home(props:propsType) {
             </Head>
             <main className={styles.main}>
               <h1>Icon Pusher</h1>
-
-              <p>Icon Pusher is a resource for Android Icon Pack developers to get application details for setting up their icon packs.</p>
-              <p>You can get the companion app for submitting apps from the Google Play Store:
-                <a href="https://play.google.com/store/apps/details?id=dev.southpaw.iconpusher&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noreferrer" className="google-play-badge">
-                  <Image alt="Get it on Google Play" src="https://play.google.com/intl/en_gb/badges/static/images/badges/en_badge_web_generic.png" width={208} height={80} className='w-52 m-auto' />
-                </a>
-              </p>
+              <div className='px-8'>
+                <p>Icon Pusher is a resource for Android Icon Pack developers to get application details for setting up their icon packs.</p>
+                <p>You can get the companion app for submitting apps from the Google Play Store:
+                  <a href="https://play.google.com/store/apps/details?id=dev.southpaw.iconpusher&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noreferrer" className="google-play-badge">
+                    <Image alt="Get it on Google Play" src="https://play.google.com/intl/en_gb/badges/static/images/badges/en_badge_web_generic.png" width={208} height={80} className='w-52 m-auto' />
+                  </a>
+                </p>
+              </div>
 
                 <AppCardGroup
                   appCards={props.latest.apps}
@@ -88,7 +89,7 @@ export default function Home(props:propsType) {
 }
 
 // This function gets called at build time
-export async function getStaticProps() {
+export async function getServerSideProps() {
     // Call an external API endpoint to get posts
     const res = await fetch('https://api.iconpusher.com/latest')
     const latest = await res.json()
