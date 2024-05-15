@@ -27,7 +27,7 @@ type appType = {
   components:componentType[],
 }
 
-const PackageDetails: NextPage = () => {
+const Beta: NextPage = () => {
 
   const router = useRouter()
   const { packageName } = router.query
@@ -112,5 +112,4 @@ export async function getServerSideProps() {
   }
 
 
-export default PackageDetails
-// PackageDetails.Layout = MyLayout;
+export default Beta

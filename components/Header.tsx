@@ -78,14 +78,20 @@ localStorage.removeItem('theme')
     // console.log('setting theme', localStorage.theme);
   }
 
-
     return (
       <header>
         <div className="bg-emerald-700 border-b-4 border-emerald-800 text-white">
           <div className="max-w-screen-xl m-auto flex items-center">
             <p className="grow">
-              <Link href="/" className="py-3 inline-block">
-                Icon Pusher
+              <Link
+                href="/"
+                // className="py-3 inline-block"
+                className={style.logo}
+              >
+                <span>
+                  <img src="https://img.iconpusher.com/logo_w.png" className="size-12" />
+                </span>
+                <span className="pl-4 text-xl">Icon Pusher</span>
               </Link>
             </p>
             <ul>
