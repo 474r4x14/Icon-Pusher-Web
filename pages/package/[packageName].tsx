@@ -13,10 +13,8 @@ import useDownloader from "react-use-downloader";
 import stream from 'stream';
 import { promisify } from 'util';
 import { Button, Tooltip } from '@mui/material';
+import AppCard from '@/components/AppCard';
 
-type componentType = {
-
-}
 
 type appType = {
   name:string,
@@ -28,7 +26,15 @@ type appType = {
   components:componentType[],
 }
 
-const PackageDetails: NextPage = () => {
+type propsType = {
+  onAdd:Function,
+  onRemove:Function,
+  onCheckSelected:Function,
+  setSearchKeyword:Function,
+}
+
+
+function PackageDetails(props:propsType) {
 
   const router = useRouter()
   const { packageName } = router.query
@@ -145,9 +151,19 @@ const PackageDetails: NextPage = () => {
         <h1>{appData.name}</h1>
         <p><a href={`https://play.google.com/store/apps/details?id=${appData.packageName}`} target="_blank">Google Play Page</a></p>
 
-        <p className="text-center main-icon">
-            <Image src={appData.icon} className='inline-block' alt={appData.name} width={192} height={192} />
-        </p>
+        <div className="text-center main-icon">
+          <div className="inline-block">
+            <AppCard
+              name={appData.name}
+              appData={appData}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              selected={props.onCheckSelected(appData)}
+              setSearchKeyword={props.setSearchKeyword}
+              isLink={false}
+            />
+          </div>
+        </div>
 
         <p className="text-center">
             <a className='cursor-pointer'

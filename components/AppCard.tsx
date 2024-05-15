@@ -13,11 +13,15 @@ type propsType = {
   onRemove:Function,
   setSearchKeyword:Function,
   selected:boolean,
+  isLink:boolean,
 }
 
 function AppCard (props:propsType) {
 
   const appData = props.appData
+
+  var isLink = props.isLink ?? true
+
 
   const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -42,16 +46,24 @@ function AppCard (props:propsType) {
   height: 100%;
   align-items: center;
 */
+
+var content = <>
+  <Image src={props.appData.icon} className="rounded" width={200} height={200} alt={`${props.appData.name}`} />
+</>
+  if (isLink) {
+    content = <Link
+      href={`/package/${props.appData.packageName}`}
+      onClick={()=>{props.setSearchKeyword("")}}
+    >
+      {content}
+      <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
+    </Link>
+  }
+
   return (
     // <div className={styles.appCard}>
     <div className="relative">
-      <Link
-        href={`/package/${props.appData.packageName}`}
-        onClick={()=>{props.setSearchKeyword("")}}
-      >
-        <Image src={props.appData.icon} className="rounded" width={200} height={200} alt={`${props.appData.name}`} />
-        <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
-      </Link>
+      {content}
       <input
         type="checkbox"
         onChange={handleInputChange}
