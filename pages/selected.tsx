@@ -55,7 +55,17 @@ export default function Home(props:propsType) {
     <IconX className='absolute right-2 top-2 cursor-pointer' onClick={hidePopup} />
   </div> : ''
 
-
+    var content = <p>There are no selected apps</p>
+    if (props.selectedApps.length > 0) {
+      content = <AppCardGroup
+        appCards={props.selectedApps}
+        useMax={false}
+        onAdd={props.onAdd}
+        onRemove={props.onRemove}
+        onCheckSelected={props.onCheckSelected}
+        setSearchKeyword={props.setSearchKeyword}
+      />
+    }
 
     return (
         <div className={styles.container}>
@@ -66,15 +76,7 @@ export default function Home(props:propsType) {
             </Head>
             <main className={styles.main}>
               <h1>Selected Apps</h1>
-
-                <AppCardGroup
-                  appCards={props.selectedApps}
-                  useMax={false}
-                  onAdd={props.onAdd}
-                  onRemove={props.onRemove}
-                  onCheckSelected={props.onCheckSelected}
-                  setSearchKeyword={props.setSearchKeyword}
-                />
+                {content}
                 {betaPopup}
             </main>
         </div>
