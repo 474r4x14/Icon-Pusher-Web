@@ -1,67 +1,83 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
-// import MyLayout from "../layouts/MyLayout";
+import Image from 'next/image'
+
 import styles from './AppCard.module.scss'
 import Misc from '../classes/Misc';
-
-// type GreetFunction = (a: string) => void;
-/*
-type SomeConstructor = {
-  new (s: string): SomeObject;
-};
-*/
-
-
+import { IconCheck } from '@tabler/icons-react';
 
 type propsType = {
   name:string,
-  appData:{
-    packageName:string,
-    name:string,
-    icon:string,
-  }
+  appData:appType,
+  onAdd:Function,
+  onRemove:Function,
+  setSearchKeyword:Function,
+  selected:boolean,
+  isLink:boolean,
 }
-
 
 function AppCard (props:propsType) {
 
+  const appData = props.appData
 
-/*
-handleInputChange = event => {
-    console.log(this.props.appData)
-    console.log('selected',event.target.checked)
+  var isLink = props.isLink ?? true
+
+
+  const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-        console.log('AppCard', 'calling props.onAdd')
-        this.props.onAdd(this.props.appData)
+      // console.log('AppCard', 'calling props.onAdd')
+      props.onAdd(props.appData)
     } else {
-        this.props.onRemove(this.props.appData.id)
+      props.onRemove(props.appData)
     }
-    //this.props.onNameChange(event.target.value)
-  }
-  */
-
- let uid = Misc.getUID();
-
-
-
- console.log('AppCard data', props.appData)
-    return (
-        // let selected = false;
-        <div className={styles.appCard}>
-            <Link href={`/package/${props.appData.packageName}`}>
-                    <img src={props.appData.icon} />
-                    <p>{props.appData.name}</p>
-            </Link>
-            <input
-              type="checkbox"
-              // onChange={this.handleInputChange}
-              value="test??"
-              id={`app-${uid}`}
-              // isChecked={this.props.appData.selected}
-            />
-            <label htmlFor={`app-${uid}`}>test lbl</label>
-        </div>
-    )
   }
 
-  export default AppCard
+  let uid = Misc.getUID();
+
+  const color = props.selected ? "bg-green-400" : "bg-blue-400";
+  const tick = props.selected ? "text-black after:flex after:top-0 after:absolute after:w-full after:h-full after:justify-center after:align-center after:content-['\\2713']" : "";
+  const check = props.selected ? <IconCheck className="absolute top-0" /> : <></>
+  /*
+  display: flex;
+  top: 0;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+*/
+
+var content = <>
+  <Image src={props.appData.icon} className="rounded" width={200} height={200} alt={`${props.appData.name}`} />
+</>
+  if (isLink) {
+    content = <Link
+      href={`/package/${props.appData.packageName}`}
+      onClick={()=>{props.setSearchKeyword("")}}
+    >
+      {content}
+      <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
+    </Link>
+  }
+
+  return (
+    // <div className={styles.appCard}>
+    <div className="relative">
+      {content}
+      <input
+        type="checkbox"
+        onChange={handleInputChange}
+        // value="test??"
+        id={`app-${uid}`}
+        checked={props.selected}
+        className="hidden"
+      />
+      <label htmlFor={`app-${uid}`} className={`block h-8 w-8 border-solid border-2 border-emerald-700 absolute z-10 inset-0 rounded-md ${tick}`} >
+        <span className={`block ${color}  opacity-50 w-full h-full`}></span>
+        {check}
+      </label>
+    </div>
+  )
+}
+
+export default AppCard

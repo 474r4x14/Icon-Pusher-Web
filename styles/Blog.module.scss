@@ -1,0 +1,34 @@
+.container {
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 2rem 0;
+  font-size: 1.5em;
+
+  a {
+    color: #10b981;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    padding-top: 1em;
+  }
+
+  p {
+    padding: .5em 0;
+  }
+
+  li {
+    list-style-type: disc;
+  }
+
+}
+
+.changelog li {
+  margin-bottom: 1em;
+}

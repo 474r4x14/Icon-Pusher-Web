@@ -1,102 +1,131 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
-import AppCard from './AppCard';
 import style from './Header.module.scss';
+import { IconSun, IconBug } from '@tabler/icons-react';
 
-class Header extends React.Component {
+type propsType = {
+  onAdd:Function,
+  onRemove: Function,
+  onCheckSelected: Function,
+  searchKeyword:string,
+  setSearchKeyword:Function,
+}
+function Header (props:propsType) {
 
-    //let results = []
+  // const [keyword, setKeyword] = useState("narp");
+  const [results, setResults] = useState<appType[]>([]);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            keyWord: "narp",
-            results: [],
-        };
-        //this.resultAppData = []
-      }
-
-    doSearch = (e) =>
-    {
-        let keyword = e.target.value
-        this.setState({keyWord: keyword});
-        if (keyword.length >= 3) {
-            fetch(`https://api.iconpusher.com/search/${keyword}`)
-            .then(res => res.json())
-            .then(data => {
-              this.populateResults(data.apps)
-            }).catch((e) => {console.log(e)});
-        } else {
-            this.populateResults([])
-        }
+  useEffect(() => {
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
     }
+  }, []);
 
-    populateResults = (appData: Array) => {
-        var results = <p>niet</p>
-        if (appData.length > 0) {
-            var more = null;
-            var moreLink = `/search/${this.state.keyWord}`
-            if (appData.length >= 10) {
-                more = <Link href={`/search/${this.state.keyWord}`}>
-                    More Results
-                </Link>
-            }
-            var resultList = []
-            var i = 0
-            var max = appData.length
-            if (max > 9) {
-                max = 9
-            }
-
-            /*
-            for (i = 0; i < max; i++) {
-                var app = appData[i]
-                resultList.push(<li>
-                // New component for grouping all cards
-                <AppCard name={app.name} appData={app} onAdd={this.addApp} onRemove={this.removeApp} />
-                </li>)
-            }
-            */
-            results = <div><AppCardGroup appCards={appData} moreLink={moreLink} onAdd={this.addApp} onRemove={this.removeApp} onCheckSelected={this.checkSelected} /></div>
-        }
-
-       this.setState({results: results})
+  useEffect(() => {
+    // console.log('kw - Has changed')
+    if (props.searchKeyword.length == 0) {
+      setResults([])
     }
+  },[props.searchKeyword]) // <-- here put the parameter to listen, react will re-render component when your state will be changed
 
 
-
-
-
-
-
-    addApp = appData => {
-        console.log('HEADER add card data', appData.name)
-        console.log(this.props)
-        this.props.onAdd(appData)
-    }
-
-    removeApp = (appId) => {
-        console.log('remove card data', appId, this.props)
-        this.props.onRemove(appId)
-    }
-
-    checkSelected = (appId) => {
-        console.log('check selected data', appId, this.props)
-        this.props.onCheckSelec(appId)
-    }
-
-    render() {
-        return <header>
-            <p>Icon Pusher</p>
-            <div className={style.search}>
-                <input type="search" onChange={this.doSearch} placeholder="Search" />
-                {this.state.results}
-            </div>
-            <nav>
-            </nav>
-        </header>;
+  const doSearch = (e:ChangeEvent<HTMLInputElement>) => {
+    let keyword = e.target.value
+    props.setSearchKeyword(keyword)
+    if (keyword.length >= 3) {
+      fetch(`https://api.iconpusher.com/search/${keyword}`)
+      .then(res => res.json())
+      .then(data => {
+        setResults(data.apps)
+      }).catch((e) => {console.log(e)});
+    } else {
+      setResults([])
     }
   }
 
+  var more = null;
+  var moreLink = `/search/${props.searchKeyword}`
+  if (results.length > 12) {
+      more = <Link href={`/search/${props.searchKeyword}`}>
+          More Results
+      </Link>
+  }
+
+
+
+/*
+// Whenever the user explicitly chooses light mode
+localStorage.theme = 'light'
+
+// Whenever the user explicitly chooses dark mode
+localStorage.theme = 'dark'
+
+// Whenever the user explicitly chooses to respect the OS preference
+localStorage.removeItem('theme')
+*/
+  const toggleTheme = () => {
+    if (localStorage.theme == 'light') {
+      localStorage.theme = 'dark'
+      document.documentElement.classList.add('dark');
+    } else {
+      localStorage.theme = 'light'
+      document.documentElement.classList.remove('dark');
+    }
+    // console.log('setting theme', localStorage.theme);
+  }
+
+    return (
+      <header>
+        <div className="bg-emerald-700 border-b-4 border-emerald-800 text-white">
+          <div className="max-w-screen-xl m-auto flex items-center">
+            <p className="grow">
+              <Link
+                href="/"
+                // className="py-3 inline-block"
+                className={style.logo}
+              >
+                <span>
+                  <img src="https://img.iconpusher.com/logo_w.png" className="size-12" />
+                </span>
+                <span className="pl-4 text-xl">Icon Pusher</span>
+              </Link>
+            </p>
+            <ul>
+              <li>
+                <Link href="/beta">
+                  <IconBug />
+                </Link>
+              </li>
+            </ul>
+            <p className="p-4 cursor-pointer" onClick={toggleTheme}>
+              <IconSun />
+            </p>
+          </div>
+        </div>
+        {/* <div className={style.search}> */}
+        <div className="text-center my-4 max-w-screen-xl m-auto">
+          <input
+            type="search"
+            onChange={doSearch}
+            placeholder="Search for an app"
+            className="transition-colors p-4 rounded-lg bg-zinc-100 dark:bg-zinc-700 border-2 border-emerald-400 dark:border-emerald-400 w-full"
+            value={props.searchKeyword}
+          />
+          <AppCardGroup
+            appCards={results}
+            moreLink={moreLink}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+            onCheckSelected={props.onCheckSelected}
+            setSearchKeyword={props.setSearchKeyword}
+            useMax={true}
+          />
+        </div>
+      </header>
+    )
+  }
   export default Header

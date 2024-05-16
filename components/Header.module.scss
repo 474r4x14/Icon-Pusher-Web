@@ -4,3 +4,27 @@
         border-radius: 4px;
     }
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    img {
+        transition: opacity .5s;
+        &.black {
+            opacity:1;
+        }
+        &.white {
+            opacity:0;
+        }
+    }
+}
+
+.dark .logo {
+    &.black {
+        opacity:0;
+    }
+    &.white {
+        opacity:1;
+    }
+}
