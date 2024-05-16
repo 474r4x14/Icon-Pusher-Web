@@ -55,10 +55,7 @@ const Beta: NextPage = () => {
         <h2>Issues I&apos;m aware of:</h2>
         <ul>
           <li>Missing icons (also on live)</li>
-          <li>Device lists</li>
           <li>Option to clear selection</li>
-          <li>Page to view selected apps</li>
-          <li>Select/deselect from details page</li>
           <li>Responsive design is incomplete</li>
           <li>General styling</li>
           <li>Some name characters are badly encoded</li>
@@ -73,6 +70,12 @@ const Beta: NextPage = () => {
 
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
+          <li>
+            <strong>v2.0 pre-5 (2024-05-16)</strong><br />
+            Added device app list<br/>
+            Added new page to view all selected apps<br/>
+            Added the logo
+          </li>
           <li>
             <strong>v2.0 pre-4 (2024-05-07)</strong><br />
             Added feedback to copy buttons<br/>
