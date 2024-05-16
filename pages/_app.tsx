@@ -101,6 +101,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         onRemove={removeSelected}
         onCheckSelected={appIsSelected}
         setSearchKeyword={setSearchKeyword}
+        selectedApps={selectedApps}
       />
       <SelectedApps
         appData={selectedApps}

@@ -127,6 +127,7 @@ function SelectedApps (props:propData) {
         <div className="flex items-center">
           {renderSelected()}
           <a onClick={download} className="cursor-pointer p-4">Download zip</a>
+          <Link href="/selected" className="cursor-pointer p-4">Selected apps</Link>
         </div>
       </div>
     )
