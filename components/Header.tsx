@@ -2,7 +2,7 @@ import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
-import { IconSun, IconBug } from '@tabler/icons-react';
+import { IconSun, IconBug, IconMail } from '@tabler/icons-react';
 
 type propsType = {
   onAdd:Function,
@@ -94,14 +94,19 @@ localStorage.removeItem('theme')
                 <span className="pl-4 text-xl">Icon Pusher</span>
               </Link>
             </p>
-            <ul>
+            <ul className="flex">
               <li>
-                <Link href="/beta">
+                <Link href="/contact" className="px-2 py-4 block">
+                  <IconMail />
+                </Link>
+              </li>
+              <li>
+                <Link href="/beta" className="px-2 py-4 block">
                   <IconBug />
                 </Link>
               </li>
             </ul>
-            <p className="p-4 cursor-pointer" onClick={toggleTheme}>
+            <p className="px-2 py-4 cursor-pointer" onClick={toggleTheme}>
               <IconSun />
             </p>
           </div>
