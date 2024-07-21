@@ -24,7 +24,18 @@ const nextConfig = {
         },
       ],
     },
-  ],  
+  ],
+
+  async redirects() {
+    return [
+      {
+        source: '/beta',
+        destination: '/changelog',
+        permanent: true,
+      },
+    ]
+  },
+
 
 }
 

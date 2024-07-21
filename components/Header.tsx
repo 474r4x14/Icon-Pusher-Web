@@ -2,7 +2,7 @@ import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
-import { IconSun, IconBug, IconMail } from '@tabler/icons-react';
+import { IconSun, IconHistory, IconMail } from '@tabler/icons-react';
 
 type propsType = {
   onAdd:Function,
@@ -101,8 +101,8 @@ localStorage.removeItem('theme')
                 </Link>
               </li>
               <li>
-                <Link href="/beta" className="px-2 py-4 block">
-                  <IconBug />
+                <Link href="/changelog" className="px-2 py-4 block">
+                  <IconHistory />
                 </Link>
               </li>
             </ul>

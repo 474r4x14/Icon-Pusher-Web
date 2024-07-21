@@ -1,0 +1,127 @@
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import styles from '../styles/Blog.module.scss'
+import Link from "next/link";
+// import MyLayout from "../../layouts/MyLayout";
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import Header from "../components/Header"
+import Misc from '@/classes/Misc';
+import useDownloader from "react-use-downloader";
+import { IconBrowser, IconBrandAndroid } from '@tabler/icons-react';
+
+import stream from 'stream';
+import { promisify } from 'util';
+
+type componentType = {
+
+}
+
+type appType = {
+  name:string,
+  slug:string,
+  icon:string,
+  iconDownload:string,
+  version:string,
+  packageName:string,
+  components:componentType[],
+}
+
+const Beta: NextPage = () => {
+
+  const router = useRouter()
+  const { packageName } = router.query
+
+
+
+
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Iconpusher Beta information</title>
+        <meta name="description" content="Iconpusher Changelog Information" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className={styles.main}>
+        <h1>Iconpusher Changelog</h1>
+        <p>Hello icon pack artists/creators</p>
+        <p>I felt happy enough with the current state of the beta version of IconPusher v2.0 so I've put it live.</p>
+        <p>There are still a few pieces left to polish off, but nothing which couldn't be done once the rest of the changes were live</p>
+        <p>This page will now act as a changelog for both the site (<IconBrowser className='inline' />), and the app (<IconBrandAndroid className='inline' />)</p>
+
+        <p>All feedback is welcome: <a href="mailto:feedback@iconpusher.com?subject=Feedback">feedback@iconpusher.com</a></p>
+        <h2>Issues I&apos;m aware of:</h2>
+        <ul>
+          <li><IconBrowser className='inline' /> Option to clear selection</li>
+          <li><IconBrowser className='inline' /> Responsive design is incomplete</li>
+          <li><IconBrowser className='inline' /> General styling</li>
+          <li><IconBrandAndroid className='inline' /> Error feedback</li>
+          <li><IconBrowser className='inline' /> Save app selection on reload</li>
+          <li><IconBrowser className='inline' /> Light to dark theme fade on reload</li>
+        </ul>
+
+        <h2>Upcoming features:</h2>
+        <ul>
+          <li><IconBrowser className='inline' /> App icon versions</li>
+          <li><IconBrowser className='inline' /> Pagination</li>
+          <li><IconBrowser className='inline' /> Popular apps</li>
+          <li><IconBrowser className='inline' /> Feedback form instead of email</li>
+          <li><IconBrandAndroid className='inline' /> Dark mode</li>
+        </ul>
+
+        <h2>Nice ideas</h2>
+        <li><IconBrandAndroid className='inline' /> Detecting new/updated apps</li>
+
+        <h2>Change log:</h2>
+        <ul className={styles.changelog}>
+        <li>
+            <strong>v2.0 🥳 (2024-07-20)</strong><br />
+            <IconBrowser className='inline' /> Fixed encoding issues
+          </li>
+          <li>
+            <strong>v2.0 pre-5 (2024-05-16)</strong><br />
+            <IconBrowser className='inline' /> Added device app list<br/>
+            <IconBrowser className='inline' /> Added new page to view all selected apps<br/>
+            <IconBrowser className='inline' /> Added the logo
+          </li>
+          <li>
+            <strong>v2.0 pre-4 (2024-05-07)</strong><br />
+            <IconBrowser className='inline' /> Added feedback to copy buttons<br/>
+            <IconBrowser className='inline' /> Fixed copy buttons not working<br />
+            <IconBrowser className='inline' /> Styled &lsquo;More Results&rsquo; button<br />
+            <IconBrowser className='inline' /> Sync with live version is now automated<br />
+            <IconBrowser className='inline' /> Fixed some broken icons
+          </li>
+          <li>
+            <strong>v2.0 pre-3 (2024-01-19)</strong><br />
+            <IconBrowser className='inline' /> Fixed - Some responsive styling
+          </li>
+          <li>
+            <strong>v2.0 pre-2 (2024-01-01)</strong><br />
+            <IconBrowser className='inline' /> Fixed - Some app icons are broken<br />
+            <IconBrowser className='inline' /> Update - Attempted to fix latest icons not appearing
+          </li>
+          <li>
+            <strong>v2.0-pre-1 (2023-12-22)</strong><br />
+            <IconBrowser className='inline' /> The initial version featuring mutliple app selection &amp; download as zip
+          </li>
+        </ul>
+      </main>
+    </div>
+  )
+}
+
+
+// This gets called on every request
+export async function getServerSideProps() {
+    // Fetch data from external API
+    const res = await fetch(`https://api.iconpusher.com/search/data`)
+    const data = await res.json()
+
+    // Pass data to the page via props
+    return { props: { data } }
+  }
+
+
+export default Beta
