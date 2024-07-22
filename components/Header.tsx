@@ -4,14 +4,7 @@ import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
 import { IconSun, IconHistory, IconMail } from '@tabler/icons-react';
 
-type propsType = {
-  onAdd:Function,
-  onRemove: Function,
-  onCheckSelected: Function,
-  searchKeyword:string,
-  setSearchKeyword:Function,
-}
-function Header (props:propsType) {
+function Header (props:headerPropsType) {
 
   // const [keyword, setKeyword] = useState("narp");
   const [results, setResults] = useState<appType[]>([]);

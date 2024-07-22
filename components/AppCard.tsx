@@ -6,17 +6,7 @@ import styles from './AppCard.module.scss'
 import Misc from '../classes/Misc';
 import { IconCheck } from '@tabler/icons-react';
 
-type propsType = {
-  name:string,
-  appData:appType,
-  onAdd:Function,
-  onRemove:Function,
-  setSearchKeyword:Function,
-  selected:boolean,
-  isLink:boolean,
-}
-
-function AppCard (props:propsType) {
+function AppCard (props:appCardPropsType) {
 
   const appData = props.appData
 

@@ -3,17 +3,7 @@ import Link from "next/link";
 import AppCard from './AppCard';
 import styles from './AppCardGroup.module.scss'
 
-type propsType = {
-  appCards:appType[],
-  moreLink?:string,
-  useMax?:boolean,
-  onAdd:Function,
-  onRemove:Function,
-  onCheckSelected:Function,
-  setSearchKeyword:Function,
-}
-
-function AppCardGroup(props:propsType) {
+function AppCardGroup(props:appCardGroupPropsType) {
   const getCards = () => {
     var cards = [];
     var results = <></>

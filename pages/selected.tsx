@@ -11,25 +11,8 @@ import Header from "../components/Header";
 import SelectedApps from "../components/SelectedApps";
 import AppCardGroup from "../components/AppCardGroup";
 
-// let appData:appCardsType[] = []
-/*
-type appCardsType = {
-  packageName:string,
-  name:string,
-  icon:string,
-}
-*/
 
-type propsType = {
-  selectedApps:appType[],
-  onAdd:Function,
-  onRemove:Function,
-  onCheckSelected:Function,
-  setSearchKeyword:Function,
-  latest:{apps:appType[]},
-}
-
-export default function Home(props:propsType) {
+export default function Home(props:selectedPropsType) {
 
   var refTest = React.createRef();
 

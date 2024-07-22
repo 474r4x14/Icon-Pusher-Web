@@ -21,30 +21,14 @@ export const metadata: Metadata = {
   title: 'Invoices | Acme Dashboard',
 };
 
-type appType = {
-  name:string,
-  slug:string,
-  icon:string,
-  iconDownload:string,
-  version:string,
-  packageName:string,
-  components:componentType[],
-}
-
-type propsType = {
-  onAdd:Function,
-  onRemove:Function,
-  onCheckSelected:Function,
-  setSearchKeyword:Function,
-}
 
 
-function PackageDetails(props:propsType) {
+function PackageDetails(props:packageDetailsPropsType) {
 
   const router = useRouter()
   const { packageName } = router.query
 
-    const[appData, setAppData] = useState<appType>({
+    const[appData, setAppData] = useState<appType2>({
       name: '',
       slug: '',
       icon: '',

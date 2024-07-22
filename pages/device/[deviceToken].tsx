@@ -11,14 +11,8 @@ import AppCardGroup from '../../components/AppCardGroup';
 
 
 
-type propsType = {
-  onAdd:Function,
-  onRemove:Function,
-  onCheckSelected:Function,
-  setSearchKeyword:Function,
-}
 
-function Device(props:propsType) {
+function Device(props:devicePropsType) {
 
   const router = useRouter()
   const { deviceToken } = router.query

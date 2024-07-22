@@ -14,20 +14,6 @@ import { IconBrowser, IconBrandAndroid } from '@tabler/icons-react';
 import stream from 'stream';
 import { promisify } from 'util';
 
-type componentType = {
-
-}
-
-type appType = {
-  name:string,
-  slug:string,
-  icon:string,
-  iconDownload:string,
-  version:string,
-  packageName:string,
-  components:componentType[],
-}
-
 const Beta: NextPage = () => {
 
   const router = useRouter()

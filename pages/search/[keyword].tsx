@@ -11,14 +11,9 @@ import AppCardGroup from '../../components/AppCardGroup';
 
 
 
-type propsType = {
-  onAdd:Function,
-  onRemove:Function,
-  onCheckSelected:Function,
-  setSearchKeyword:Function,
-}
 
-function SearchResult(props:propsType) {
+
+function SearchResult(props:searchKeywordPropsType) {
 
   const router = useRouter()
   const { keyword } = router.query

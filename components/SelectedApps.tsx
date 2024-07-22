@@ -5,22 +5,8 @@ import style from './SelectedApps.module.scss';
 import Misc from '@/classes/Misc';
 import { saveAs } from 'file-saver';
 var JSZip = require("jszip");
-/*
-type appCardsType = {
-  packageName:string,
-  components:string[],
-  id:number,
-  name:string,
-  icon:string,
-}
-*/
 
-type propData = {
-  appData:appType[],
-  setSearchKeyword:Function,
-}
-
-function SelectedApps (props:propData) {
+function SelectedApps (props:packagePropData) {
   // console.log('selectedApps',props)
   const [selectedAppData, setSelectedAppData] = useState<appType[]>([]);
 
