@@ -25,7 +25,8 @@ type propsType = {
   onRemove:Function,
   onCheckSelected:Function,
   setSearchKeyword:Function,
-  latest:{apps:appType[]},
+  latestApps:{apps:appType[]},
+  latestVersions:{apps:appType[]},
 }
 
 export default function Home(props:propsType) {
@@ -50,7 +51,7 @@ export default function Home(props:propsType) {
 
     const betaPopup = showBetaPopup ? <div className='fixed bottom-5 right-5 dark:bg-zinc-900 border-emerald-600 border-2 p-4 rounded-md bg-zinc-200 z-30'>
     <p className='font-semibold'>v2.0 is live 🥳 </p>
-    <p>Please make sure you're using<br />the latest version of the app</p>
+    <p>Please make sure you&apos;re using<br />the latest version of the app</p>
     <IconX className='absolute right-2 top-2 cursor-pointer' onClick={hidePopup} />
   </div> : ''
 
@@ -73,17 +74,26 @@ export default function Home(props:propsType) {
                   </a>
                 </p>
               </div>
-
-                <AppCardGroup
-                  appCards={props.latest.apps}
-                  useMax={false}
-                  onAdd={props.onAdd}
-                  onRemove={props.onRemove}
-                  onCheckSelected={props.onCheckSelected}
-                  setSearchKeyword={props.setSearchKeyword}
-                />
-                {betaPopup}
+              <h2>Recently added apps</h2>
+              <AppCardGroup
+                appCards={props.latestApps.apps}
+                useMax={false}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onCheckSelected={props.onCheckSelected}
+                setSearchKeyword={props.setSearchKeyword}
+              />
+              <h2>Recently updated apps</h2>
+              <AppCardGroup
+                appCards={props.latestVersions.apps}
+                useMax={false}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onCheckSelected={props.onCheckSelected}
+                setSearchKeyword={props.setSearchKeyword}
+              />
             </main>
+            {betaPopup}
         </div>
     )
 }
@@ -91,8 +101,10 @@ export default function Home(props:propsType) {
 // This function gets called at build time
 export async function getServerSideProps() {
     // Call an external API endpoint to get posts
-    const res = await fetch('https://api.iconpusher.com/latest')
+    const res = await fetch('https://api.iconpusher.com/latest-new')
     const latest = await res.json()
+    const latestApps = latest.apps
+    const latestVersions = latest.versions
 
     // let's loop through the apps and mark any as selected
     // TODO ubove
@@ -101,7 +113,8 @@ export async function getServerSideProps() {
     // will receive `posts` as a prop at build time
     return {
       props: {
-        latest,
+        latestApps,
+        latestVersions,
       },
     }
   }
