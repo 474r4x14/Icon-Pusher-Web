@@ -1,26 +1,13 @@
-type componentType = {
-
-}
-
 type appType = {
   packageName:string,
   id:number,
   name:string,
   icon:string,
+  iconDownload:string,
   selected:boolean,
   components:string[],
-}
-
-type appType2 = {
-  name:string,
-  slug:string,
-  icon:string,
-  iconDownload:string,
   version:string,
-  packageName:string,
-  components:componentType[],
 }
-
 
 // Properties definitions
 

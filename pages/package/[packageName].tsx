@@ -28,14 +28,15 @@ function PackageDetails(props:packageDetailsPropsType) {
   const router = useRouter()
   const { packageName } = router.query
 
-    const[appData, setAppData] = useState<appType2>({
+    const[appData, setAppData] = useState<appType>({
       name: '',
-      slug: '',
       icon: '',
       iconDownload: '',
       version: '',
       packageName: '',
       components: [],
+      id:0,
+      selected:false,
     });
 
 

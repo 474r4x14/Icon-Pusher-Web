@@ -44,6 +44,7 @@ function AppCardGroup(props:appCardGroupPropsType) {
               onRemove={removeApp}
               selected={props.onCheckSelected(app)}
               setSearchKeyword={props.setSearchKeyword}
+              isLink={true}
             />
           </li>
         )
