@@ -38,13 +38,13 @@ const Beta: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Iconpusher Beta information</title>
+        <title>Iconpusher Contact</title>
         <meta name="description" content="Iconpusher Contact Information" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         <h1>Contact</h1>
-        <p>If you've got any questions, suggestions, or just wanna say "hi", feel free to ping an email:</p>
+        <p>If you&apos;ve got any questions, suggestions, or just wanna say &quot;hi&quot;, feel free to ping an email:</p>
 
         <p><a href="mailto:hi@iconpusher.com?subject=Feedback">hi@iconpusher.com</a></p>
 

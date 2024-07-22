@@ -12,6 +12,19 @@
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  /* font-size: 1.5em; */
+}
+
+.main h1 {
+  font-size: 2em;
+}
+
+.main h2 {
+  font-size: 1.5em;
+}
+
+.main p {
+  font-size: 1.25em;
 }
 
 .footer {

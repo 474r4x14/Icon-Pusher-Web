@@ -7,7 +7,7 @@
 .main {
   min-height: 100vh;
   padding: 2rem 0;
-  font-size: 1.5em;
+  // font-size: 1.5em;
 
   a {
     color: #10b981;
@@ -22,6 +22,22 @@
   p {
     padding: .5em 0;
   }
+
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1.25em;
+  }
+
+
+
 
   li {
     list-style-type: disc;

@@ -3,14 +3,14 @@
 .appCard{
     //background:#0f0;
     position: relative;
-    
+
     input[type="checkbox"] {
         display: none;
         position: absolute;
         top: 0;
         left: 0;
       padding: 4px;
-      
+
       &+label {
           position: absolute;
           top: 0;
@@ -20,7 +20,7 @@
           background: #f00;
           display: block;
       }
-      
+
       &:checked + label {
           background: #00f;
       }
@@ -31,7 +31,7 @@
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    
+
     img {
         width: 250px;
     }

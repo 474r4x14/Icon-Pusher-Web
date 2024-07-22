@@ -39,15 +39,15 @@ const Beta: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Iconpusher Beta information</title>
+        <title>Changelog information | Icon Pusher</title>
         <meta name="description" content="Iconpusher Changelog Information" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>Iconpusher Changelog</h1>
+        <h1>Changelog</h1>
         <p>Hello icon pack artists/creators</p>
-        <p>I felt happy enough with the current state of the beta version of IconPusher v2.0 so I've put it live.</p>
-        <p>There are still a few pieces left to polish off, but nothing which couldn't be done once the rest of the changes were live</p>
+        <p>I felt happy enough with the current state of the beta version of IconPusher v2.0 so I&apos;ve put it live.</p>
+        <p>There are still a few pieces left to polish off, but nothing which couldn&apos;t be done once the rest of the changes were live</p>
         <p>This page will now act as a changelog for both the site (<IconBrowser className='inline' />), and the app (<IconBrandAndroid className='inline' />)</p>
 
         <p>All feedback is welcome: <a href="mailto:feedback@iconpusher.com?subject=Feedback">feedback@iconpusher.com</a></p>
@@ -56,9 +56,12 @@ const Beta: NextPage = () => {
           <li><IconBrowser className='inline' /> Option to clear selection</li>
           <li><IconBrowser className='inline' /> Responsive design is incomplete</li>
           <li><IconBrowser className='inline' /> General styling</li>
-          <li><IconBrandAndroid className='inline' /> Error feedback</li>
           <li><IconBrowser className='inline' /> Save app selection on reload</li>
           <li><IconBrowser className='inline' /> Light to dark theme fade on reload</li>
+          <li><IconBrowser className='inline' /> Apps with the same name will probably conflict/overwrite in zip download</li>
+          <li><IconBrowser className='inline' /> There are a number of broken icons for the latest versions of apps. Issue has been fixed, but might have to roll the broken version numbers back</li>
+          <li><IconBrandAndroid className='inline' /> Error feedback</li>
+          <li><IconBrandAndroid className='inline' /> Uploading a new version of an existing app may error</li>
         </ul>
 
         <h2>Upcoming features:</h2>
@@ -68,16 +71,24 @@ const Beta: NextPage = () => {
           <li><IconBrowser className='inline' /> Popular apps</li>
           <li><IconBrowser className='inline' /> Feedback form instead of email</li>
           <li><IconBrandAndroid className='inline' /> Dark mode</li>
+          <li><IconBrandAndroid className='inline' /> Search filter</li>
+          <li><IconBrandAndroid className='inline' /> Refresh list</li>
         </ul>
 
         <h2>Nice ideas</h2>
-        <li><IconBrandAndroid className='inline' /> Detecting new/updated apps</li>
+        <ul>
+          <li><IconBrandAndroid className='inline' /> Detecting new/updated apps</li>
+          <li><IconBrowser className='inline' /> Showcase of icon packs</li>
+        </ul>
 
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
         <li>
             <strong>v2.0 🥳 (2024-07-20)</strong><br />
-            <IconBrowser className='inline' /> Fixed encoding issues
+            <IconBrowser className='inline' /> Fixed encoding issues<br />
+            <IconBrowser className='inline' /> Added latest version updates to homepage<br />
+            <IconBrowser className='inline' /> Fixed version numbers containing &lsquo;/&rsquo; breaking icons (lookin&apos; at you MS teams!)<br />
+            <IconBrandAndroid className='inline' /> Fixed an issue where updates weren&apos;t uploaded correctly
           </li>
           <li>
             <strong>v2.0 pre-5 (2024-05-16)</strong><br />

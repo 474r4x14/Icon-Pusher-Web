@@ -56,7 +56,7 @@ var content = <>
       onClick={()=>{props.setSearchKeyword("")}}
     >
       {content}
-      <p className="text-center dark:text-green-400 transitionc-olor duration-500">{props.appData.name}</p>
+      <span className="text-center dark:text-green-400 transitionc-olor duration-500 block">{props.appData.name}</span>
     </Link>
   }
 
