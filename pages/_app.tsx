@@ -76,7 +76,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-8SJJRGD904"
+        src="https://www.googletagmanager.com/gtag/js?id=G-W7NBCQQ6Z8"
         strategy="beforeInteractive"
       />
       <Script id="google-analytics" strategy="beforeInteractive">
@@ -85,7 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', 'G-8SJJRGD904');
+          gtag('config', 'G-W7NBCQQ6Z8');
         `}
       </Script>
       <Header
