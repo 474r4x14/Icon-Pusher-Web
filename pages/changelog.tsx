@@ -70,7 +70,7 @@ const Beta: NextPage = () => {
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
         <li>
-            <strong>v2.0 🥳 (2024-07-20)</strong><br />
+            <strong>v2.0 🥳 (2024-07-21)</strong><br />
             <IconBrowser className='inline' /> Fixed encoding issues<br />
             <IconBrowser className='inline' /> Added latest version updates to homepage<br />
             <IconBrowser className='inline' /> Fixed version numbers containing &lsquo;/&rsquo; breaking icons (lookin&apos; at you MS teams!)<br />
