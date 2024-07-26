@@ -109,7 +109,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <footer className={`bg-zinc-900 border-t-4 border-zinc-950 text-white ${footerPadding}`}>
         <div className='max-w-screen-xl m-auto '>
-           <p className='py-2 text-right'><Link href="/changelog" className="py-3 inline-block">v2.0</Link></p>
+           <p className='py-2 text-right'><Link href="/changelog" className="py-3 inline-block">v2.0.1</Link></p>
         </div>
       </footer>
     </>

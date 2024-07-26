@@ -70,6 +70,10 @@ const Beta: NextPage = () => {
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
         <li>
+            <strong>v2.0.1 (2024-07-26)</strong><br />
+            <IconBrowser className='inline' /> Fixed upload issue which caused icons not displaying due to naming inconsistency
+          </li>
+        <li>
             <strong>v2.0 🥳 (2024-07-21)</strong><br />
             <IconBrowser className='inline' /> Fixed encoding issues<br />
             <IconBrowser className='inline' /> Added latest version updates to homepage<br />
