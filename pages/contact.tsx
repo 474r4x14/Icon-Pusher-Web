@@ -25,7 +25,7 @@ const Beta: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Iconpusher Contact</title>
+        <title>Contact | Iconpusher</title>
         <meta name="description" content="Iconpusher Contact Information" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -2,7 +2,8 @@ import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
-import { IconSun, IconHistory, IconMail } from '@tabler/icons-react';
+import { IconSun, IconHistory, IconMail, IconMug } from '@tabler/icons-react';
+import Tooltip from '@mui/material/Tooltip';
 
 function Header (props:headerPropsType) {
 
@@ -89,18 +90,31 @@ localStorage.removeItem('theme')
             </p>
             <ul className="flex">
               <li>
+                <Link href="/donate" className="px-2 py-4 block">
+                  <Tooltip title="Donate" arrow>
+                    <IconMug />
+                  </Tooltip>
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="px-2 py-4 block">
-                  <IconMail />
+                  <Tooltip title="Contact" arrow>
+                    <IconMail />
+                  </Tooltip>
                 </Link>
               </li>
               <li>
                 <Link href="/changelog" className="px-2 py-4 block">
-                  <IconHistory />
+                  <Tooltip title="Changelog" arrow>
+                    <IconHistory />
+                  </Tooltip>
                 </Link>
               </li>
             </ul>
             <p className="px-2 py-4 cursor-pointer" onClick={toggleTheme}>
-              <IconSun />
+              <Tooltip title="Change Theme" arrow>
+                <IconSun />
+              </Tooltip>
             </p>
           </div>
         </div>
