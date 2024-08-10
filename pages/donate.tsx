@@ -31,7 +31,7 @@ const Beta: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h1>Donate</h1>
-        <p>Hosting a website isn't free, and while adding adverts to help cover the costs is an option, I'd rather not if it can be helped</p>
+        <p>Hosting a website isn&apos;t free, and while adding adverts to help cover the costs is an option, I&apos;d rather not if it can be helped</p>
 
         <p>If you find this site helpful, and would like to help out and make a donation, please check the options below:</p>
 
