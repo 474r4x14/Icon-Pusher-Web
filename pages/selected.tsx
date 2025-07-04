@@ -55,24 +55,3 @@ export default function Home(props:selectedPropsType) {
         </div>
     )
 }
-
-// This function gets called at build time
-export async function getServerSideProps() {
-    // Call an external API endpoint to get posts
-    const res = await fetch('https://api.iconpusher.com/latest')
-    const latest = await res.json()
-
-    // let's loop through the apps and mark any as selected
-    // TODO ubove
-
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-      props: {
-        latest,
-      },
-    }
-  }
-
-
-// Home.Layout = MyLayout

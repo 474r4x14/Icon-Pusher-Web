@@ -10,6 +10,7 @@ import Header from "../components/Header";
 // import Footer from "../components/Footer";
 import SelectedApps from "../components/SelectedApps";
 import AppCardGroup from "../components/AppCardGroup";
+import { apiClient } from '../lib/api';
 
 export default function Home(props:homePropsType) {
 
@@ -82,17 +83,10 @@ export default function Home(props:homePropsType) {
 
 // This function gets called at build time
 export async function getServerSideProps() {
-    // Call an external API endpoint to get posts
-    const res = await fetch('https://api.iconpusher.com/latest-new')
-    const latest = await res.json()
+    const latest: latestPropsType = await apiClient.get('/latest-new');
     const latestApps = latest.apps
     const latestVersions = latest.versions
 
-    // let's loop through the apps and mark any as selected
-    // TODO ubove
-
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
     return {
       props: {
         latestApps,

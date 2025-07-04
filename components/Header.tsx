@@ -4,6 +4,7 @@ import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';
 import { IconSun, IconHistory, IconMail, IconMug } from '@tabler/icons-react';
 import Tooltip from '@mui/material/Tooltip';
+import { apiClient } from '../lib/api';
 
 function Header (props:headerPropsType) {
 
@@ -27,15 +28,19 @@ function Header (props:headerPropsType) {
   },[props.searchKeyword]) // <-- here put the parameter to listen, react will re-render component when your state will be changed
 
 
-  const doSearch = (e:ChangeEvent<HTMLInputElement>) => {
-    let keyword = e.target.value
+  const doSearch = async (e:ChangeEvent<HTMLInputElement>) => {
+    const keyword = e.target.value
     props.setSearchKeyword(keyword)
+
     if (keyword.length >= 3) {
-      fetch(`https://api.iconpusher.com/search/${keyword}`)
-      .then(res => res.json())
-      .then(data => {
-        setResults(data.apps)
-      }).catch((e) => {console.log(e)});
+      try {
+        // Use async/await to get the data and type it.
+        const data: searchResultstPropsType = await apiClient.get(`/search/${keyword}`);
+        setResults(data.apps);
+      } catch (e) {
+        console.error("Search failed:", e);
+        setResults([]);
+      }
     } else {
       setResults([])
     }

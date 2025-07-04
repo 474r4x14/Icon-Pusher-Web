@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Header from "../../components/Header"
 import AppCardGroup from '../../components/AppCardGroup';
-
+import { apiClient } from '@/lib/api';
 
 
 
@@ -17,15 +17,6 @@ function Device(props:devicePropsType) {
   const router = useRouter()
   const { deviceToken } = router.query
 
-    const[appData, setAppData] = useState([]);
-
-    useEffect(() => {
-        fetch(`https://api.iconpusher.com/device/${deviceToken}`)
-        .then(res => res.json())
-        .then(data => {
-          setAppData(data.apps);
-        }).catch((e) => {console.log(e)});
-      }, [router.isReady, deviceToken]);
 
   return (
     <div className={styles.container}>
@@ -35,7 +26,7 @@ function Device(props:devicePropsType) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppCardGroup
-        appCards={appData}
+        appCards={props.results.apps}
         // moreLink={moreLink}
         onAdd={props.onAdd}
         onRemove={props.onRemove}
@@ -49,13 +40,15 @@ function Device(props:devicePropsType) {
 
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  if (context.params != undefined && context.params.deviceToken != undefined) {
     // Fetch data from external API
-    const res = await fetch(`https://api.iconpusher.com/device/data`)
-    const data = await res.json()
+    const results = await apiClient.get(`/device/${context.params.deviceToken}`)
 
     // Pass data to the page via props
-    return { props: { data } }
+    return { props: { results } }
+  }
+    return {props:{}}
   }
 
 

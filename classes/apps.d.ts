@@ -35,6 +35,7 @@ type packageDetailsPropsType = {
   onRemove:Function,
   onCheckSelected:Function,
   setSearchKeyword:Function,
+  appData:appType,
 }
 
 type appCardGroupPropsType = {
@@ -57,6 +58,7 @@ type searchKeywordPropsType = {
   onRemove:Function,
   onCheckSelected:Function,
   setSearchKeyword:Function,
+  results: searchResultstPropsType,
 }
 
 type devicePropsType = {
@@ -64,6 +66,7 @@ type devicePropsType = {
   onRemove:Function,
   onCheckSelected:Function,
   setSearchKeyword:Function,
+  results: searchResultstPropsType,
 }
 
 
@@ -83,5 +86,14 @@ type appCardPropsType = {
   setSearchKeyword:Function,
   selected:boolean,
   isLink:boolean,
+}
+
+type latestPropsType = {
+  apps:appType[],
+  versions:appType[],
+}
+
+type searchResultstPropsType = {
+  apps:appType[],
 }
 

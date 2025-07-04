@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
@@ -8,25 +8,15 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Header from "../../components/Header"
 import AppCardGroup from '../../components/AppCardGroup';
-
+import { apiClient } from '../../lib/api';
 
 
 
 
 function SearchResult(props:searchKeywordPropsType) {
-
+// console.log('props',props);
   const router = useRouter()
   const { keyword } = router.query
-
-    const[appData, setAppData] = useState([]);
-
-    useEffect(() => {
-        fetch(`https://api.iconpusher.com/search/${keyword}`)
-        .then(res => res.json())
-        .then(data => {
-          setAppData(data.apps);
-        }).catch((e) => {console.log(e)});
-      }, [router.isReady, keyword]);
 
   return (
     <div className={styles.container}>
@@ -36,7 +26,7 @@ function SearchResult(props:searchKeywordPropsType) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppCardGroup
-        appCards={appData}
+        appCards={props.results.apps}
         // moreLink={moreLink}
         onAdd={props.onAdd}
         onRemove={props.onRemove}
@@ -50,13 +40,15 @@ function SearchResult(props:searchKeywordPropsType) {
 
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  if (context.params != undefined && context.params.keyword != undefined) {
     // Fetch data from external API
-    const res = await fetch(`https://api.iconpusher.com/search/data`)
-    const data = await res.json()
+    const results = await apiClient.get(`/search/${context.params.keyword}`)
 
     // Pass data to the page via props
-    return { props: { data } }
+    return { props: { results } }
+  }
+    return {props:{}}
   }
 
 
