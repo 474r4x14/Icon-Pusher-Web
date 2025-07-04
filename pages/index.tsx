@@ -14,32 +14,6 @@ import { apiClient } from '../lib/api';
 
 export default function Home(props:homePropsType) {
 
-  var refTest = React.createRef();
-
-    const [selectedApps, setSelectedApps] = useState<appType[]>([]);
-    const [showBetaPopup, setShowBetaPopup] = useState(false);
-
-    useEffect(() => {
-    const popStatus = localStorage.getItem('hideBetaPopup');
-    if (!popStatus) {
-      setShowBetaPopup(true)
-    }
-   },[])
-
-    const hidePopup = () => {
-      // const stored = localStorage.getItem(key);
-      setShowBetaPopup(false)
-      localStorage.setItem('hideBetaPopup', 'true');
-    }
-
-    const betaPopup = showBetaPopup ? <div className='fixed bottom-5 right-5 dark:bg-zinc-900 border-emerald-600 border-2 p-4 rounded-md bg-zinc-200 z-30'>
-    <p className='font-semibold'>v2.0 is live 🥳 </p>
-    <p>Please make sure you&apos;re using<br />the latest version of the app</p>
-    <IconX className='absolute right-2 top-2 cursor-pointer' onClick={hidePopup} />
-  </div> : ''
-
-
-
     return (
         <div className={styles.container}>
             <Head>
@@ -76,7 +50,6 @@ export default function Home(props:homePropsType) {
                 setSearchKeyword={props.setSearchKeyword}
               />
             </main>
-            {betaPopup}
         </div>
     )
 }
