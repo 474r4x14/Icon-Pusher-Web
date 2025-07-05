@@ -70,6 +70,10 @@ const Beta: NextPage = () => {
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
           <li>
+            <strong>v2.1.0 (2025-07-05)</strong><br />
+            <IconBrowser className='inline' /> Improved general performance of the website
+          </li>
+          <li>
             <strong>v2.0.2 (2024-08-10)</strong><br />
             <IconBrowser className='inline' /> Added donation page
           </li>
