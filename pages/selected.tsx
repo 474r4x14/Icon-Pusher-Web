@@ -1,33 +1,15 @@
-import type { NextPage } from 'next'
 import React, { useState, useEffect } from "react";
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Link from "next/link";
-import { IconBug, IconX } from '@tabler/icons-react';
-// import MyLayout from "../layouts/MyLayout";
-import Header from "../components/Header";
-// import Footer from "../components/Footer";
-import SelectedApps from "../components/SelectedApps";
 import AppCardGroup from "../components/AppCardGroup";
 
-
 export default function Home(props:selectedPropsType) {
-
-  var refTest = React.createRef();
-
-    const [selectedApps, setSelectedApps] = useState<appType[]>([]);
 
     useEffect(() => {
     const popStatus = localStorage.getItem('hideBetaPopup');
     if (!popStatus) {
     }
    },[])
-
-    const hidePopup = () => {
-      // const stored = localStorage.getItem(key);
-      localStorage.setItem('hideBetaPopup', 'true');
-    }
 
     var content = <p>There are no selected apps</p>
     if (props.selectedApps.length > 0) {

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useState, useEffect } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import Link from "next/link";
 import AppCardGroup from './AppCardGroup';
 import style from './Header.module.scss';

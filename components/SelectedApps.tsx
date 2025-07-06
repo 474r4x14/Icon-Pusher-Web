@@ -1,15 +1,11 @@
 import React, { ReactElement, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import style from './SelectedApps.module.scss';
 import Misc from '@/classes/Misc';
 import { saveAs } from 'file-saver';
 var JSZip = require("jszip");
 
 function SelectedApps (props:packagePropData) {
-  // console.log('selectedApps',props)
-  const [selectedAppData, setSelectedAppData] = useState<appType[]>([]);
-
   const renderSelected = () => {
     if (selectedApps.length > 5) {
       const slice = selectedApps.slice(0,5)
@@ -28,7 +24,6 @@ function SelectedApps (props:packagePropData) {
     // saveToZip('test.zip',iconUrls)
     saveToZipFull('iconpusher-pack.zip',props.appData)
   }
-
 
   const saveToZip = (filename:string, urls:string[]) => {
     const zip = new JSZip()
@@ -51,10 +46,6 @@ function SelectedApps (props:packagePropData) {
   const saveToZipFull = (filename:string, apps:appType[]) => {
     const zip = new JSZip()
     const folder = zip.folder('icons')
-
-    // appfilter.xml
-    // appmap.xml
-    // theme_resources.xml
 
     var appFilterValue = '';
     var appMapValue = '';

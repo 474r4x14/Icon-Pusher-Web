@@ -1,13 +1,11 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Script from 'next/script';
-//import React from "react"
 import React, { useState, useEffect } from "react";
 import '../app/globals.css'
 import SelectedApps from '@/components/SelectedApps';
 import Header from '@/components/Header';
 import Link from 'next/link';
-import Misc from '@/classes/Misc';
 
 // Component is the Page being loaded
 function MyApp({ Component, pageProps }: AppProps) {

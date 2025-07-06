@@ -19,20 +19,13 @@ function AppCardGroup(props:appCardGroupPropsType) {
         </Link>
       }
       var i = 0
-      // var useMax = true
-      // if (useMax == 'false') {
-        // useMax = false
-      // }
 
       var max = props.appCards.length
-
-      // console.log('USE MAX',useMax, max, useMax)
 
       if (props.useMax && max > 12) {
         max = 12
       }
 
-      // console.log('AppCardGroup max',max)
       for (i = 0; i < max; i++) {
         var app = props.appCards[i]
         cards.push(
@@ -61,11 +54,6 @@ function AppCardGroup(props:appCardGroupPropsType) {
   const removeApp = (appData:appType) => {
     props.onRemove(appData)
   }
-
-  const checkSelected = (appData:appType) => {
-      // props.onCheckSelected(appData)
-  }
-
 
   return (
     <div>{getCards()}</div>

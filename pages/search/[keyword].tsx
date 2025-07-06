@@ -1,20 +1,11 @@
 import type { NextPage, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
-import Link from "next/link";
-// import MyLayout from "../../layouts/MyLayout";
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Header from "../../components/Header"
 import AppCardGroup from '../../components/AppCardGroup';
 import { apiClient } from '../../lib/api';
 
-
-
-
 function SearchResult(props:searchKeywordPropsType) {
-// console.log('props',props);
   const router = useRouter()
   const { keyword } = router.query
 
@@ -50,7 +41,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
     return {props:{}}
   }
-
 
 export default SearchResult
 // SearchResult.Layout = MyLayout;

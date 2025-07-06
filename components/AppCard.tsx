@@ -2,14 +2,10 @@ import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import Image from 'next/image'
 
-import styles from './AppCard.module.scss'
 import Misc from '../classes/Misc';
 import { IconCheck } from '@tabler/icons-react';
 
 function AppCard (props:appCardPropsType) {
-
-  const appData = props.appData
-
   var isLink = props.isLink ?? true
 
 
@@ -27,15 +23,6 @@ function AppCard (props:appCardPropsType) {
   const color = props.selected ? "bg-green-400" : "bg-blue-400";
   const tick = props.selected ? "text-black after:flex after:top-0 after:absolute after:w-full after:h-full after:justify-center after:align-center after:content-['\\2713']" : "";
   const check = props.selected ? <IconCheck className="absolute top-0" /> : <></>
-  /*
-  display: flex;
-  top: 0;
-  position: absolute;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-*/
 
 var content = <>
   <Image src={props.appData.icon} className="rounded" width={200} height={200} alt={`${props.appData.name}`} />

@@ -1,22 +1,14 @@
 import type { NextPage, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
-import Link from "next/link";
-// import MyLayout from "../../layouts/MyLayout";
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Header from "../../components/Header"
 import AppCardGroup from '../../components/AppCardGroup';
 import { apiClient } from '@/lib/api';
-
-
 
 function Device(props:devicePropsType) {
 
   const router = useRouter()
   const { deviceToken } = router.query
-
 
   return (
     <div className={styles.container}>
@@ -38,8 +30,6 @@ function Device(props:devicePropsType) {
   )
 }
 
-
-// This gets called on every request
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (context.params != undefined && context.params.deviceToken != undefined) {
     // Fetch data from external API
