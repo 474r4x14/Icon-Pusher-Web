@@ -8,24 +8,13 @@ import { apiClient } from '../lib/api';
 
 function Header (props:headerPropsType) {
 
-  // const [keyword, setKeyword] = useState("narp");
   const [results, setResults] = useState<appType[]>([]);
 
   useEffect(() => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, []);
-
-  useEffect(() => {
-    // console.log('kw - Has changed')
     if (props.searchKeyword.length == 0) {
       setResults([])
     }
-  },[props.searchKeyword]) // <-- here put the parameter to listen, react will re-render component when your state will be changed
+  },[props.searchKeyword])
 
 
   const doSearch = async (e:ChangeEvent<HTMLInputElement>) => {
@@ -54,27 +43,21 @@ function Header (props:headerPropsType) {
       </Link>
   }
 
-
-
-/*
-// Whenever the user explicitly chooses light mode
-localStorage.theme = 'light'
-
-// Whenever the user explicitly chooses dark mode
-localStorage.theme = 'dark'
-
-// Whenever the user explicitly chooses to respect the OS preference
-localStorage.removeItem('theme')
-*/
   const toggleTheme = () => {
-    if (localStorage.theme == 'light') {
-      localStorage.theme = 'dark'
-      document.documentElement.classList.add('dark');
-    } else {
-      localStorage.theme = 'light'
-      document.documentElement.classList.remove('dark');
-    }
-    // console.log('setting theme', localStorage.theme);
+    const root = document.documentElement;
+    const isDark = root.classList.contains('dark');
+
+    // 1. Add the transition class
+    root.classList.add('theme-transition');
+
+    // 2. Toggle the dark mode class and update localStorage
+    root.classList.toggle('dark', !isDark);
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+
+    // 3. Remove the transition class after it has completed
+    setTimeout(() => {
+      root.classList.remove('theme-transition');
+    }, 500);
   }
 
     return (
@@ -84,7 +67,6 @@ localStorage.removeItem('theme')
             <p className="grow">
               <Link
                 href="/"
-                // className="py-3 inline-block"
                 className={style.logo}
               >
                 <span>

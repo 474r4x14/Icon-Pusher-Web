@@ -2,19 +2,30 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Script from 'next/script';
 //import React from "react"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../app/globals.css'
 import SelectedApps from '@/components/SelectedApps';
 import Header from '@/components/Header';
 import Link from 'next/link';
+import Misc from '@/classes/Misc';
 
 // Component is the Page being loaded
 function MyApp({ Component, pageProps }: AppProps) {
 
-  // console.log('PAGE PROPS',Component, pageProps);
 
     // We try to grab the Layout static var from the Page
     // const Layout = Component.Layout != undefined ? Component.Layout : React.Fragment;
+
+    // Preload the theme
+    useEffect(() => {
+      // On page load, apply the theme from localStorage without a transition.
+      // This avoids the "flash of unthemed content" (FOUC).
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    }, []);
 
     // Keep a record of all selected apps
     const [selectedApps, setSelectedApps] = useState<appType[]>([]);

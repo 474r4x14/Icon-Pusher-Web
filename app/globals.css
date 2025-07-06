@@ -5,9 +5,12 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   background-color: #fff;
-  transition: background-color .5s;
   /* --background-start-rgb: 214, 219, 220; */
   /* --background-end-rgb: 255, 255, 255; */
+}
+
+:root.theme-transition {
+  transition: background-color 0.5s;
 }
 
 :root.dark {
