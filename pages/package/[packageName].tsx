@@ -33,9 +33,9 @@ function PackageDetails(props:packageDetailsPropsType) {
 
       if (props.appData.components != undefined) {
         for (let c = 0; c < props.appData.components.length; c++) {
-            appFilterValue += `<item component="ComponentInfo{${props.appData.packageName}/${props.appData.components[c]}}" drawable="${Misc.slug(props.appData.name,'_')}" />\n\n`
-            appMapValue += `<item class="${props.appData.components[c]}" name=${Misc.slug(props.appData.name,'_')}/>\n\n`
-            themeResourcesValue += `<AppIcon name="${props.appData.packageName}/${props.appData.components[c]}" image="${Misc.slug(props.appData.name,'_')}"/>\n\n`
+            appFilterValue += `<item component="ComponentInfo{${props.appData.packageName}/${props.appData.components[c]}}" drawable="${Misc.slug(props.appData.name,'_')}" />\n`
+            appMapValue += `<item class="${props.appData.components[c]}" name=${Misc.slug(props.appData.name,'_')}/>\n`
+            themeResourcesValue += `<AppIcon name="${props.appData.packageName}/${props.appData.components[c]}" image="${Misc.slug(props.appData.name,'_')}"/>\n`
         }
       }
 
