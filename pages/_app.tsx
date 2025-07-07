@@ -117,8 +117,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         setSearchKeyword={setSearchKeyword}
       />
       <footer className={`bg-zinc-900 border-t-4 border-zinc-950 text-white ${footerPadding}`}>
-        <div className='max-w-screen-xl m-auto '>
-           <p className='py-2 text-right'><Link href="/changelog" className="py-3 inline-block">v2.1.0</Link></p>
+        <div className='max-w-screen-xl m-auto flex'>
+           <p className='py-2 text-left'><Link href="https://v01d.uk" target='_blank' className="py-3 inline-block">Created by v01d.uk</Link></p>
+           <p className='py-2 text-right flex-grow'><Link href="/changelog" className="py-3 inline-block">v2.1.1</Link></p>
         </div>
       </footer>
     </>

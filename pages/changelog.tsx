@@ -30,7 +30,6 @@ const Beta: NextPage = () => {
           <li><IconBrowser className='inline' /> Responsive design is incomplete</li>
           <li><IconBrowser className='inline' /> General styling</li>
           <li><IconBrowser className='inline' /> Save app selection on reload</li>
-          <li><IconBrowser className='inline' /> Light to dark theme fade on reload</li>
           <li><IconBrowser className='inline' /> Apps with the same name will probably conflict/overwrite in zip download</li>
           <li><IconBrowser className='inline' /> There are a number of broken icons for the latest versions of apps. Issue has been fixed, but might have to roll the broken version numbers back</li>
           <li><IconBrandAndroid className='inline' /> Error feedback</li>
@@ -57,8 +56,14 @@ const Beta: NextPage = () => {
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
           <li>
+            <strong>v2.1.1 (2025-07-07)</strong><br />
+            <IconBrowser className='inline' /> Fixed dark mode transition on reload<br />
+            <IconBrowser className='inline' /> Removed double spacing from package text boxes
+          </li>
+          <li>
             <strong>v2.1.0 (2025-07-05)</strong><br />
-            <IconBrowser className='inline' /> Improved general performance of the website
+            <IconBrowser className='inline' /> Improved general performance of the website<br />
+            <IconBrowser className='inline' /> Updated API library
           </li>
           <li>
             <strong>v2.0.2 (2024-08-10)</strong><br />
