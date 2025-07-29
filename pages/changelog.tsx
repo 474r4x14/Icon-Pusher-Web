@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Blog.module.scss'
 import { useRouter } from 'next/router'
-import { IconBrowser, IconBrandAndroid } from '@tabler/icons-react';
+import { IconBrowser, IconBrandAndroid, IconApi } from '@tabler/icons-react';
 
 const Beta: NextPage = () => {
 
@@ -21,7 +21,7 @@ const Beta: NextPage = () => {
         <p>Hello icon pack artists/creators</p>
         <p>I felt happy enough with the current state of the beta version of IconPusher v2.0 so I&apos;ve put it live.</p>
         <p>There are still a few pieces left to polish off, but nothing which couldn&apos;t be done once the rest of the changes were live</p>
-        <p>This page will now act as a changelog for both the site (<IconBrowser className='inline' />), and the app (<IconBrandAndroid className='inline' />)</p>
+        <p>This page will now act as a changelog for the site (<IconBrowser className='inline' />), the API (<IconApi className='inline' />), and the app (<IconBrandAndroid className='inline' />)</p>
 
         <p>All feedback is welcome: <a href="mailto:feedback@iconpusher.com?subject=Feedback">feedback@iconpusher.com</a></p>
         <h2>Issues I&apos;m aware of:</h2>
@@ -55,6 +55,10 @@ const Beta: NextPage = () => {
 
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
+          <li>
+            <strong>v1.1.5 (2025-07-29)</strong><br />
+            <IconApi className='inline' /> Fixed issue which caused empty download XML files on website
+          </li>
           <li>
             <strong>v2.1.3 (2025-07-29)</strong><br />
             <IconBrowser className='inline' /> Added app delist information 😞
