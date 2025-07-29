@@ -56,6 +56,10 @@ const Beta: NextPage = () => {
         <h2>Change log:</h2>
         <ul className={styles.changelog}>
           <li>
+            <strong>v2.1.3 (2025-07-29)</strong><br />
+            <IconBrowser className='inline' /> Added app delist information 😞
+          </li>
+          <li>
             <strong>v2.1.2 (2025-07-25)</strong><br />
             <IconBrowser className='inline' /> Added privacy policy for the app
           </li>
